@@ -945,11 +945,12 @@ const Music=(function(){
 })();
 
 const btn = document.getElementById('musicBtn');
-const bgAudio = document.getElementById('bgAudio');
 
 btn.addEventListener('click', () => {
+  const bgAudio = document.getElementById('bgAudio');
+  if (!bgAudio) return;
   if (bgAudio.paused) {
-    bgAudio.play();
+    bgAudio.play().catch(()=>{});
     bgAudio.volume = 0;
     let vol = 0;
     const fade = setInterval(() => {
@@ -996,7 +997,7 @@ btn.addEventListener('click', () => {
 </script>
 
 <audio id="bgAudio" loop preload="none">
-        <source src="national_song.mp3" type="audio/mpeg">
+  <source src="national_song.mp3" type="audio/mpeg">
 </audio>
 
 
