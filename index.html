@@ -3,1102 +3,1002 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A digital memorial dedicated to the martyrs of the Indian Armed Forces — brave souls who laid down their lives so India may live in peace.">
-  <title>Veer Shaheed — Eternal Guardians of India 🇮🇳</title>
+  <title>Veer Shaheed - Eternal Guardians of India</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
-
   <style>
-  /* ===== VARIABLES ===== */
-  :root {
-    --saffron: #FF9933;
-    --saffron-light: #FFB366;
-    --saffron-dim: rgba(255,153,51,0.15);
-    --white: #FFFFFF;
-    --green: #138808;
-    --green-light: #1db50d;
-    --navy: #000080;
-    --gold: #FFD700;
-    --bg: #06060a;
-    --bg2: #0b0b10;
-    --bg3: #111118;
-    --card: #13131c;
-    --card2: #191924;
-    --text: #f0ebe0;
-    --muted: #8a8070;
-    --dim: #504840;
-  }
-
-  /* ===== RESET ===== */
-  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; font-size:16px; }
-  body { background:var(--bg); color:var(--text); font-family:'Crimson Text',Georgia,serif; overflow-x:hidden; }
-  ::-webkit-scrollbar { width:3px; }
-  ::-webkit-scrollbar-track { background:#000; }
-  ::-webkit-scrollbar-thumb { background:var(--saffron); border-radius:2px; }
-
-  /* ===== LOADER ===== */
-  #loader {
-    position:fixed; inset:0; background:#000;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    z-index:9999; transition:opacity 1s ease, visibility 1s ease;
-  }
-  #loader.out { opacity:0; visibility:hidden; pointer-events:none; }
-  #loader-chakra { width:90px; height:90px; animation:spin 2s linear infinite; }
-  @keyframes spin { to { transform:rotate(360deg); } }
-  #loader-text {
-    margin-top:22px; font-family:'Cinzel',serif; font-size:.85rem; letter-spacing:.5em;
-    color:var(--saffron); animation:blink 1.5s ease-in-out infinite;
-  }
-  @keyframes blink { 0%,100%{opacity:.3} 50%{opacity:1} }
-
-  /* ===== PARTICLES ===== */
-  #particles { position:fixed; inset:0; pointer-events:none; z-index:1; }
-
-  /* ===== MUSIC BTN ===== */
-  #musicBtn {
-    position:fixed; bottom:28px; right:28px; z-index:200;
-    width:50px; height:50px; border-radius:50%;
-    background:rgba(255,153,51,.1); border:1px solid rgba(255,153,51,.4);
-    color:var(--saffron); cursor:pointer; display:flex; align-items:center; justify-content:center;
-    backdrop-filter:blur(10px); transition:all .3s; font-size:1.1rem;
-    box-shadow:0 4px 20px rgba(0,0,0,.5);
-  }
-  #musicBtn:hover { background:rgba(255,153,51,.2); box-shadow:0 0 20px rgba(255,153,51,.4); }
-  #musicBtn.on { background:rgba(255,153,51,.25); animation:musicglow 2s ease-in-out infinite; }
-  @keyframes musicglow { 0%,100%{box-shadow:0 0 15px rgba(255,153,51,.3)} 50%{box-shadow:0 0 30px rgba(255,153,51,.7)} }
-  #musicLabel {
-    position:fixed; bottom:34px; right:88px; z-index:200; font-family:'Cinzel',serif;
-    font-size:.6rem; letter-spacing:.2em; color:rgba(255,153,51,.7); white-space:nowrap;
-    opacity:0; transition:opacity .3s; pointer-events:none;
-  }
-  #musicBtn:hover ~ #musicLabel { opacity:1; }
-
-  /* ===== NAV ===== */
-  nav {
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    padding:14px 40px; display:flex; align-items:center; justify-content:space-between;
-    transition:all .4s;
-  }
-  nav.scrolled {
-    background:rgba(6,6,10,.93); backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(255,153,51,.15);
-  }
-  .nav-brand { font-family:'Cinzel',serif; font-size:.8rem; font-weight:700; color:var(--saffron); letter-spacing:.2em; text-decoration:none; }
-  .nav-links { display:flex; gap:28px; list-style:none; }
-  .nav-links a { font-family:'Cinzel',serif; font-size:.65rem; letter-spacing:.2em; color:rgba(255,255,255,.55); text-decoration:none; text-transform:uppercase; transition:color .3s; }
-  .nav-links a:hover { color:var(--saffron); }
-  @media(max-width:768px){ .nav-links{display:none} nav{padding:14px 20px} }
-
-  /* ===== DIVIDER ===== */
-  .tc { height:2px; background:linear-gradient(to right, var(--saffron) 33.33%, var(--white) 33.33%, var(--white) 66.66%, var(--green) 66.66%); }
-  .tc.glow { box-shadow:0 0 20px rgba(255,153,51,.4), 0 0 8px rgba(19,136,8,.3); }
-
-  /* ===== HERO ===== */
-  #hero {
-    position:relative; width:100%; height:100vh; min-height:650px;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    overflow:hidden;
-    background:radial-gradient(ellipse 100% 80% at 50% 20%, #1c0900 0%, #06060a 65%);
-  }
-  .hero-bg-glow {
-    position:absolute; inset:0; pointer-events:none;
-    background:
-      radial-gradient(ellipse 70% 50% at 50% 25%, rgba(255,100,0,.07) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 40% at 20% 60%, rgba(19,136,8,.04) 0%, transparent 60%);
-  }
-  /* Light rays */
-  .rays { position:absolute; top:0; left:50%; width:100%; height:100%; overflow:hidden; pointer-events:none; transform:translateX(-50%); }
-  .ray { position:absolute; top:0; left:50%; width:1px; height:100%; background:linear-gradient(to bottom, rgba(255,153,51,.12) 0%, transparent 60%); transform-origin:top center; }
-  .ray:nth-child(1){transform:rotate(-50deg); animation:rayf 4s ease-in-out infinite;}
-  .ray:nth-child(2){transform:rotate(-35deg); animation:rayf 4s ease-in-out infinite .6s; opacity:.7;}
-  .ray:nth-child(3){transform:rotate(-18deg); animation:rayf 4s ease-in-out infinite 1.1s;}
-  .ray:nth-child(4){transform:rotate(0deg);   animation:rayf 4s ease-in-out infinite .3s;}
-  .ray:nth-child(5){transform:rotate(18deg);  animation:rayf 4s ease-in-out infinite .9s;}
-  .ray:nth-child(6){transform:rotate(35deg);  animation:rayf 4s ease-in-out infinite 1.4s; opacity:.7;}
-  .ray:nth-child(7){transform:rotate(50deg);  animation:rayf 4s ease-in-out infinite .2s;}
-  @keyframes rayf { 0%,100%{opacity:.2} 50%{opacity:.6} }
-
-  /* Side flag canvas */
-  #flagCanvas { position:absolute; top:50%; right:4%; transform:translateY(-50%); opacity:.28; border-radius:2px; }
-  @media(max-width:900px){ #flagCanvas{display:none} }
-
-  /* Side chakra */
-  .hero-chakra-wrap {
-    position:absolute; left:4%; top:50%; transform:translateY(-50%); opacity:.12;
-    animation:slowspin 50s linear infinite;
-  }
-  @keyframes slowspin { to{transform:translateY(-50%) rotate(360deg)} }
-  @media(max-width:900px){ .hero-chakra-wrap{display:none} }
-
-  /* Hero content */
-  .hero-content { position:relative; z-index:10; text-align:center; padding:0 24px; max-width:850px; }
-  .hero-eyebrow {
-    font-family:'Cinzel',serif; font-size:.7rem; letter-spacing:.55em; color:var(--saffron);
-    text-transform:uppercase; margin-bottom:22px;
-    opacity:0; animation:fadeup 1s ease forwards .5s;
-  }
-  .hero-title {
-    font-family:'Cinzel Decorative',serif; font-size:clamp(2rem,4.5vw,4.8rem); font-weight:900; line-height:1.1;
-    background:linear-gradient(135deg, var(--saffron) 0%, var(--gold) 40%, #fff 65%, var(--saffron-light) 100%);
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-    filter:drop-shadow(0 0 30px rgba(255,153,51,.35));
-    margin-bottom:22px; opacity:0; animation:fadeup 1s ease forwards .8s;
-  }
-  .hero-sub {
-    font-family:'Crimson Text',serif; font-size:clamp(.95rem,1.8vw,1.35rem); color:rgba(255,255,255,.68);
-    line-height:1.75; max-width:620px; margin:0 auto 36px;
-    opacity:0; animation:fadeup 1s ease forwards 1.1s;
-  }
-  .hero-quote-box {
-    display:inline-block; padding:14px 30px;
-    border-left:2px solid var(--saffron); border-right:2px solid var(--saffron);
-    font-family:'Cinzel',serif; font-size:clamp(.9rem,1.6vw,1.2rem); color:var(--saffron);
-    letter-spacing:.06em; opacity:0; animation:fadeup 1s ease forwards 1.4s;
-  }
-  @keyframes fadeup { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
-
-  /* Scroll indicator */
-  .scroll-ind {
-    position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
-    display:flex; flex-direction:column; align-items:center; gap:8px;
-    opacity:0; animation:fadeup 1s ease forwards 2s;
-  }
-  .scroll-ind span { font-family:'Cinzel',serif; font-size:.58rem; letter-spacing:.35em; color:rgba(255,255,255,.3); }
-  .scroll-arrow { width:18px; height:18px; border-right:1px solid rgba(255,153,51,.5); border-bottom:1px solid rgba(255,153,51,.5); transform:rotate(45deg); animation:bouncearr 2s ease-in-out infinite; }
-  @keyframes bouncearr { 0%,100%{transform:rotate(45deg) translate(0,0); opacity:.5} 50%{transform:rotate(45deg) translate(3px,3px); opacity:1} }
-
-  /* ===== SECTION BASE ===== */
-  section { position:relative; z-index:2; }
-  .sec-wrap { max-width:1200px; margin:0 auto; }
-  .sec-head { text-align:center; margin-bottom:56px; }
-  .sec-tag { font-family:'Cinzel',serif; font-size:.65rem; letter-spacing:.5em; color:var(--saffron); text-transform:uppercase; display:block; margin-bottom:14px; }
-  .sec-title { font-family:'Cinzel',serif; font-size:clamp(1.6rem,3.5vw,2.8rem); font-weight:700; color:var(--text); line-height:1.2; }
-  .sec-desc { margin-top:14px; font-size:1.05rem; color:var(--muted); max-width:580px; margin-left:auto; margin-right:auto; line-height:1.7; }
-
-  /* ===== REVEAL ===== */
-  .reveal { opacity:0; transform:translateY(32px); transition:opacity .7s ease, transform .7s ease; }
-  .reveal.vis { opacity:1; transform:translateY(0); }
-
-  /* ===== FLAME SECTION ===== */
-  #flame {
-    padding:80px 40px; text-align:center;
-    background:radial-gradient(ellipse 80% 60% at 50% 50%, #0f0600 0%, var(--bg) 70%);
-  }
-  .flame-wrap { position:relative; display:inline-block; margin-bottom:32px; }
-  .flame-base-glow {
-    position:absolute; bottom:-18px; left:50%; transform:translateX(-50%);
-    width:130px; height:35px; border-radius:50%; filter:blur(18px);
-    background:radial-gradient(ellipse, rgba(255,153,51,.9) 0%, rgba(255,80,0,.4) 60%, transparent 100%);
-    animation:baseflicker 1.5s ease-in-out infinite;
-  }
-  @keyframes baseflicker { 0%,100%{opacity:.6;transform:translateX(-50%) scaleX(1)} 50%{opacity:1;transform:translateX(-50%) scaleX(1.4)} }
-  .flame-svg { position:relative; z-index:2; filter:drop-shadow(0 0 25px rgba(255,153,51,.9)) drop-shadow(0 0 50px rgba(255,80,0,.5)); }
-
-  /* Flame SVG paths animated */
-  .f-outer { animation:flick1 .8s ease-in-out infinite alternate; transform-origin:50% 100%; }
-  .f-mid   { animation:flick2 .6s ease-in-out infinite alternate; transform-origin:50% 100%; }
-  .f-inner { animation:flick3 .4s ease-in-out infinite alternate; transform-origin:50% 100%; }
-  .f-core  { animation:flick4 .3s ease-in-out infinite alternate; transform-origin:50% 100%; }
-  @keyframes flick1 { 0%{transform:scaleX(1) scaleY(1) rotate(-3deg)} 100%{transform:scaleX(.92) scaleY(1.06) rotate(3deg)} }
-  @keyframes flick2 { 0%{transform:scaleX(1.05) scaleY(.97) rotate(2deg)} 100%{transform:scaleX(.95) scaleY(1.08) rotate(-2deg)} }
-  @keyframes flick3 { 0%{transform:scaleX(.9) scaleY(1.1) rotate(-2deg)} 100%{transform:scaleX(1.1) scaleY(.95) rotate(2deg)} }
-  @keyframes flick4 { 0%{transform:scaleX(1) scaleY(1)} 100%{transform:scaleX(.85) scaleY(1.12)} }
-
-  .flame-caption { font-family:'Cinzel',serif; font-size:1rem; letter-spacing:.15em; color:rgba(255,255,255,.75); }
-  .flame-caption em { color:var(--saffron); font-style:normal; }
-
-  /* ===== HEROES WALL ===== */
-  #heroes { padding:100px 40px; background:var(--bg2); }
-  @media(max-width:768px){ #heroes{padding:70px 18px} }
-  .heroes-grid {
-    display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-    gap:22px; max-width:1180px; margin:0 auto;
-  }
-  .hero-card {
-    position:relative; background:var(--card); border:1px solid rgba(255,153,51,.12);
-    border-radius:3px; padding:30px 26px 50px; overflow:hidden;
-    transition:transform .4s ease, box-shadow .4s ease, border-color .4s ease;
-    opacity:0; transform:translateY(36px); transition:opacity .6s ease, transform .6s ease, box-shadow .4s ease, border-color .4s ease;
-  }
-  .hero-card.vis { opacity:1; transform:translateY(0); }
-  .hero-card::before {
-    content:''; position:absolute; inset:0;
-    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 160'%3E%3Cellipse cx='40' cy='28' rx='11' ry='13' fill='rgba(255,255,255,0.025)'/%3E%3Crect x='22' y='13' width='36' height='9' rx='10' fill='rgba(255,255,255,0.025)'/%3E%3Crect x='29' y='42' width='22' height='46' rx='2' fill='rgba(255,255,255,0.025)'/%3E%3Crect x='9' y='45' width='17' height='5' rx='2.5' fill='rgba(255,255,255,0.025)' transform='rotate(-22 17 47)'/%3E%3Crect x='53' y='45' width='17' height='5' rx='2.5' fill='rgba(255,255,255,0.025)' transform='rotate(22 62 47)'/%3E%3Crect x='29' y='88' width='9' height='42' rx='3' fill='rgba(255,255,255,0.025)'/%3E%3Crect x='41' y='88' width='9' height='42' rx='3' fill='rgba(255,255,255,0.025)'/%3E%3Crect x='26' y='126' width='15' height='10' rx='3' fill='rgba(255,255,255,0.025)'/%3E%3Crect x='38' y='126' width='15' height='10' rx='3' fill='rgba(255,255,255,0.025)'/%3E%3C/svg%3E") no-repeat right bottom/45%;
-    pointer-events:none; opacity:.8;
-  }
-  .hero-card::after {
-    content:''; position:absolute; top:0; left:0; right:0; height:2px;
-    background:linear-gradient(to right, var(--saffron), var(--white), var(--green));
-    transform:scaleX(0); transform-origin:left; transition:transform .4s ease;
-  }
-  .hero-card:hover { transform:translateY(-7px) !important; box-shadow:0 18px 55px rgba(255,153,51,.13), 0 0 25px rgba(255,153,51,.08); border-color:rgba(255,153,51,.38); }
-  .hero-card:hover::after { transform:scaleX(1); }
-  .card-rank { font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:.35em; color:var(--saffron); margin-bottom:6px; text-transform:uppercase; }
-  .card-name { font-family:'Cinzel',serif; font-size:1.2rem; font-weight:700; color:var(--text); margin-bottom:12px; line-height:1.25; }
-  .card-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
-  .ctag { font-family:'Cinzel',serif; font-size:.55rem; letter-spacing:.12em; padding:3px 9px; border-radius:2px; text-transform:uppercase; }
-  .ctag-s { border:1px solid rgba(255,153,51,.3); color:rgba(255,153,51,.8); }
-  .ctag-g { border:1px solid rgba(19,136,8,.35); color:rgba(30,180,15,.9); }
-  .card-op { font-size:.85rem; color:var(--muted); margin-bottom:4px; }
-  .card-tribute { font-style:italic; font-size:.9rem; color:rgba(255,255,255,.55); line-height:1.6; border-left:2px solid rgba(255,153,51,.3); padding-left:11px; margin-top:14px; }
-  .card-award { display:inline-flex; align-items:center; gap:5px; margin-top:12px; font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:.1em; color:var(--gold); }
-  .card-award::before { content:'★'; font-size:.75rem; }
-  .card-yr { font-family:'Cinzel',serif; font-size:2.5rem; font-weight:900; color:rgba(255,153,51,.06); position:absolute; bottom:10px; right:16px; line-height:1; user-select:none; }
-
-  /* ===== BATTLES ===== */
-  #battles { padding:100px 40px; background:linear-gradient(180deg,var(--bg) 0%,#070710 100%); }
-  @media(max-width:768px){ #battles{padding:70px 18px} }
-  .battles-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:24px; max-width:1180px; margin:0 auto; }
-  .battle-card {
-    background:var(--card2); border:1px solid rgba(255,255,255,.06);
-    border-radius:3px; padding:34px; position:relative; overflow:hidden;
-    opacity:0; transform:translateY(28px); transition:opacity .6s, transform .6s, border-color .3s, box-shadow .3s;
-  }
-  .battle-card.vis { opacity:1; transform:translateY(0); }
-  .battle-card:hover { border-color:rgba(255,153,51,.22); box-shadow:0 10px 40px rgba(255,153,51,.08); }
-  .bc-yr-bg { position:absolute; top:-8px; right:-8px; font-family:'Cinzel',serif; font-size:5.5rem; font-weight:900; color:rgba(255,153,51,.04); line-height:1; user-select:none; pointer-events:none; }
-  .bc-icon { width:42px; height:42px; background:linear-gradient(135deg,rgba(255,153,51,.12),rgba(255,80,0,.04)); border:1px solid rgba(255,153,51,.25); border-radius:3px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; font-size:1.2rem; }
-  .bc-name { font-family:'Cinzel',serif; font-size:1.05rem; font-weight:700; color:var(--text); margin-bottom:5px; }
-  .bc-period { font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.25em; color:var(--saffron); margin-bottom:14px; }
-  .bc-desc { font-size:.9rem; color:var(--muted); line-height:1.7; margin-bottom:18px; }
-  .bc-stats { display:flex; gap:20px; padding-top:14px; border-top:1px solid rgba(255,255,255,.05); }
-  .bc-stat-num { font-family:'Cinzel',serif; font-size:1.2rem; font-weight:700; color:var(--saffron); display:block; }
-  .bc-stat-lbl { font-size:.75rem; color:var(--dim); }
-  .bc-moment { margin-top:14px; padding:10px 14px; background:rgba(255,153,51,.04); border-left:2px solid rgba(255,153,51,.3); font-style:italic; font-size:.85rem; color:rgba(255,255,255,.5); line-height:1.5; }
-
-  /* ===== TIMELINE ===== */
-  #timeline { padding:100px 0; background:var(--bg2); overflow:hidden; }
-  .tl-head { padding:0 40px; margin-bottom:50px; }
-  .tl-track { position:relative; display:flex; overflow-x:auto; padding:30px 40px 60px; gap:0; scrollbar-width:thin; scrollbar-color:var(--saffron) transparent; }
-  .tl-line { position:absolute; top:58px; left:0; right:0; height:1px; background:linear-gradient(to right, transparent 2%, rgba(255,153,51,.4) 8%, rgba(255,153,51,.4) 92%, transparent 98%); pointer-events:none; }
-  .tl-item { flex:0 0 270px; position:relative; padding-top:90px; padding-right:16px; opacity:0; transform:translateY(18px); transition:opacity .5s, transform .5s; }
-  .tl-item.vis { opacity:1; transform:translateY(0); }
-  .tl-dot { position:absolute; top:50px; left:0; width:16px; height:16px; border-radius:50%; background:var(--saffron); border:3px solid var(--bg2); box-shadow:0 0 12px rgba(255,153,51,.7); z-index:2; transform:translateY(-50%); }
-  .tl-dot.g { background:var(--green); box-shadow:0 0 12px rgba(19,136,8,.7); }
-  .tl-yr { font-family:'Cinzel',serif; font-size:1.7rem; font-weight:900; color:var(--saffron); margin-bottom:6px; }
-  .tl-ev { font-family:'Cinzel',serif; font-size:.85rem; font-weight:700; color:var(--text); margin-bottom:7px; }
-  .tl-desc { font-size:.82rem; color:var(--muted); line-height:1.6; padding-right:18px; }
-
-  /* ===== QUOTES ===== */
-  #quotes {
-    padding:100px 40px;
-    background:radial-gradient(ellipse 100% 60% at 20% 50%, rgba(255,153,51,.04) 0%, transparent 60%),
-              radial-gradient(ellipse 80% 50% at 80% 50%, rgba(19,136,8,.03) 0%, transparent 60%),
-              var(--bg);
-  }
-  @media(max-width:768px){ #quotes{padding:70px 18px} }
-  .quotes-wrap { max-width:860px; margin:0 auto; display:flex; flex-direction:column; gap:34px; }
-  .q-block {
-    padding:36px 40px; background:rgba(255,255,255,.018); border:1px solid rgba(255,153,51,.09);
-    border-radius:3px; position:relative; overflow:visible;
-    opacity:0; transform:translateX(-28px); transition:opacity .6s, transform .6s;
-  }
-  .q-block.vis { opacity:1; transform:translateX(0); }
-  .q-block:nth-child(even) { transform:translateX(28px); }
-  .q-block:nth-child(even).vis { transform:translateX(0); }
-  .q-mark { position:absolute; top:-22px; left:26px; font-family:'Cinzel',serif; font-size:5rem; color:rgba(255,153,51,.18); line-height:1; }
-  .q-text { font-family:'Crimson Text',serif; font-size:clamp(1.1rem,2.2vw,1.65rem); font-style:italic; color:var(--text); line-height:1.65; margin-bottom:18px; }
-  .q-author { font-family:'Cinzel',serif; font-size:.65rem; letter-spacing:.3em; color:var(--saffron); text-transform:uppercase; }
-  @media(max-width:768px){ .q-block{padding:26px 24px} }
-
-  /* ===== TRIBUTE ===== */
-  #tribute {
-    padding:120px 40px; text-align:center;
-    background:radial-gradient(ellipse 90% 70% at 50% 40%, #120600 0%, var(--bg) 65%);
-    position:relative; overflow:hidden;
-  }
-  @media(max-width:768px){ #tribute{padding:80px 18px} }
-  .trib-title {
-    font-family:'Cinzel Decorative',serif; font-size:clamp(1.8rem,4.5vw,4rem); font-weight:900;
-    background:linear-gradient(135deg, var(--saffron) 0%, var(--gold) 45%, #fff 70%);
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-    filter:drop-shadow(0 0 25px rgba(255,153,51,.4));
-    margin-bottom:22px;
-  }
-  .trib-text { font-family:'Crimson Text',serif; font-size:clamp(1.05rem,1.8vw,1.35rem); color:rgba(255,255,255,.65); line-height:1.8; max-width:580px; margin:0 auto 48px; }
-  .trib-flag { margin:48px auto; width:220px; border-radius:3px; box-shadow:0 0 50px rgba(255,153,51,.25), 0 0 100px rgba(255,153,51,.1); display:block; }
-  .salute { font-family:'Cinzel',serif; font-size:clamp(.9rem,1.8vw,1.4rem); letter-spacing:.35em; color:var(--saffron); text-transform:uppercase; }
-
-  /* ===== FOOTER ===== */
-  footer { background:#000; border-top:1px solid rgba(255,153,51,.18); padding:36px 40px; text-align:center; }
-  .foot-line { font-family:'Cinzel',serif; font-size:.75rem; letter-spacing:.2em; color:rgba(255,255,255,.35); margin-bottom:12px; }
-  .foot-jai { font-family:'Cinzel Decorative',serif; font-size:1.4rem; font-weight:700; color:var(--saffron); letter-spacing:.2em; }
-  .foot-branches { font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:.18em; color:var(--dim); margin-top:10px; text-transform:uppercase; }
-
+  :root{--saffron:#FF9933;--saffron-light:#FFB366;--saffron-dim:rgba(255,153,51,0.15);--white:#FFFFFF;--green:#138808;--green-light:#1db50d;--navy:#000080;--gold:#FFD700;--bg:#06060a;--bg2:#0b0b10;--bg3:#111118;--card:#13131c;--card2:#191924;--text:#f0ebe0;--muted:#8a8070;--dim:#504840;}
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;font-size:16px;}
+  body{background:var(--bg);color:var(--text);font-family:'Crimson Text',Georgia,serif;overflow-x:hidden;}
+  ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:#000;}::-webkit-scrollbar-thumb{background:var(--saffron);border-radius:2px;}
+  #loader{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity 1s ease,visibility 1s ease;}
+  #loader.out{opacity:0;visibility:hidden;pointer-events:none;}
+  #loader-chakra{width:90px;height:90px;animation:spin 2s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  #loader-text{margin-top:22px;font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.5em;color:var(--saffron);animation:blink 1.5s ease-in-out infinite;}
+  @keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
+  #particles{position:fixed;inset:0;pointer-events:none;z-index:1;}
+  #musicBtn{position:fixed;bottom:28px;right:28px;z-index:200;width:50px;height:50px;border-radius:50%;background:rgba(255,153,51,.1);border:1px solid rgba(255,153,51,.4);color:var(--saffron);cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px);transition:all .3s;font-size:1.1rem;box-shadow:0 4px 20px rgba(0,0,0,.5);}
+  #musicBtn:hover{background:rgba(255,153,51,.2);box-shadow:0 0 20px rgba(255,153,51,.4);}
+  #musicBtn.on{background:rgba(255,153,51,.25);animation:musicglow 2s ease-in-out infinite;}
+  @keyframes musicglow{0%,100%{box-shadow:0 0 15px rgba(255,153,51,.3)}50%{box-shadow:0 0 30px rgba(255,153,51,.7)}}
+  #musicLabel{position:fixed;bottom:34px;right:88px;z-index:200;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(255,153,51,.7);white-space:nowrap;opacity:0;transition:opacity .3s;pointer-events:none;}
+  #musicBtn:hover~#musicLabel{opacity:1;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+  nav.scrolled{background:rgba(6,6,10,.93);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,153,51,.15);}
+  .nav-brand{font-family:'Cinzel',serif;font-size:.8rem;font-weight:700;color:var(--saffron);letter-spacing:.2em;text-decoration:none;}
+  .nav-links{display:flex;gap:18px;list-style:none;flex-wrap:wrap;}
+  .nav-links a{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.15em;color:rgba(255,255,255,.55);text-decoration:none;text-transform:uppercase;transition:color .3s;}
+  .nav-links a:hover{color:var(--saffron);}
+  @media(max-width:900px){.nav-links{display:none}nav{padding:14px 20px}}
+  .tc{height:2px;background:linear-gradient(to right,var(--saffron) 33.33%,var(--white) 33.33%,var(--white) 66.66%,var(--green) 66.66%);}
+  .tc.glow{box-shadow:0 0 20px rgba(255,153,51,.4),0 0 8px rgba(19,136,8,.3);}
+  #hero{position:relative;width:100%;height:100vh;min-height:650px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse 100% 80% at 50% 20%,#1c0900 0%,#06060a 65%);}
+  .hero-bg-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 50% at 50% 25%,rgba(255,100,0,.07) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 20% 60%,rgba(19,136,8,.04) 0%,transparent 60%);}
+  .rays{position:absolute;top:0;left:50%;width:100%;height:100%;overflow:hidden;pointer-events:none;transform:translateX(-50%);}
+  .ray{position:absolute;top:0;left:50%;width:1px;height:100%;background:linear-gradient(to bottom,rgba(255,153,51,.12) 0%,transparent 60%);transform-origin:top center;}
+  .ray:nth-child(1){transform:rotate(-50deg);animation:rayf 4s ease-in-out infinite;}
+  .ray:nth-child(2){transform:rotate(-35deg);animation:rayf 4s ease-in-out infinite .6s;opacity:.7;}
+  .ray:nth-child(3){transform:rotate(-18deg);animation:rayf 4s ease-in-out infinite 1.1s;}
+  .ray:nth-child(4){transform:rotate(0deg);animation:rayf 4s ease-in-out infinite .3s;}
+  .ray:nth-child(5){transform:rotate(18deg);animation:rayf 4s ease-in-out infinite .9s;}
+  .ray:nth-child(6){transform:rotate(35deg);animation:rayf 4s ease-in-out infinite 1.4s;opacity:.7;}
+  .ray:nth-child(7){transform:rotate(50deg);animation:rayf 4s ease-in-out infinite .2s;}
+  @keyframes rayf{0%,100%{opacity:.2}50%{opacity:.6}}
+  #flagCanvas{position:absolute;top:50%;right:4%;transform:translateY(-50%);opacity:.28;border-radius:2px;}
+  @media(max-width:900px){#flagCanvas{display:none}}
+  .hero-chakra-wrap{position:absolute;left:4%;top:50%;transform:translateY(-50%);opacity:.12;animation:slowspin 50s linear infinite;}
+  @keyframes slowspin{to{transform:translateY(-50%) rotate(360deg)}}
+  @media(max-width:900px){.hero-chakra-wrap{display:none}}
+  .hero-content{position:relative;z-index:10;text-align:center;padding:0 24px;max-width:850px;}
+  .hero-eyebrow{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.55em;color:var(--saffron);text-transform:uppercase;margin-bottom:22px;opacity:0;animation:fadeup 1s ease forwards .5s;}
+  .hero-title{font-family:'Cinzel Decorative',serif;font-size:clamp(2rem,4.5vw,4.8rem);font-weight:900;line-height:1.1;background:linear-gradient(135deg,var(--saffron) 0%,var(--gold) 40%,#fff 65%,var(--saffron-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 30px rgba(255,153,51,.35));margin-bottom:22px;opacity:0;animation:fadeup 1s ease forwards .8s;}
+  .hero-sub{font-family:'Crimson Text',serif;font-size:clamp(.95rem,1.8vw,1.35rem);color:rgba(255,255,255,.68);line-height:1.75;max-width:620px;margin:0 auto 36px;opacity:0;animation:fadeup 1s ease forwards 1.1s;}
+  .hero-quote-box{display:inline-block;padding:14px 30px;border-left:2px solid var(--saffron);border-right:2px solid var(--saffron);font-family:'Cinzel',serif;font-size:clamp(.9rem,1.6vw,1.2rem);color:var(--saffron);letter-spacing:.06em;opacity:0;animation:fadeup 1s ease forwards 1.4s;}
+  @keyframes fadeup{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .scroll-ind{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeup 1s ease forwards 2s;}
+  .scroll-ind span{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.35em;color:rgba(255,255,255,.3);}
+  .scroll-arrow{width:18px;height:18px;border-right:1px solid rgba(255,153,51,.5);border-bottom:1px solid rgba(255,153,51,.5);transform:rotate(45deg);animation:bouncearr 2s ease-in-out infinite;}
+  @keyframes bouncearr{0%,100%{transform:rotate(45deg) translate(0,0);opacity:.5}50%{transform:rotate(45deg) translate(3px,3px);opacity:1}}
+  section{position:relative;z-index:2;}
+  .sec-wrap{max-width:1200px;margin:0 auto;}
+  .sec-head{text-align:center;margin-bottom:56px;}
+  .sec-tag{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.5em;color:var(--saffron);text-transform:uppercase;display:block;margin-bottom:14px;}
+  .sec-title{font-family:'Cinzel',serif;font-size:clamp(1.6rem,3.5vw,2.8rem);font-weight:700;color:var(--text);line-height:1.2;}
+  .sec-desc{margin-top:14px;font-size:1.05rem;color:var(--muted);max-width:580px;margin-left:auto;margin-right:auto;line-height:1.7;}
+  .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.vis{opacity:1;transform:translateY(0);}
+  #flame{padding:80px 40px;text-align:center;background:radial-gradient(ellipse 80% 60% at 50% 50%,#0f0600 0%,var(--bg) 70%);}
+  .flame-wrap{position:relative;display:inline-block;margin-bottom:32px;}
+  .flame-base-glow{position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);width:130px;height:35px;border-radius:50%;filter:blur(18px);background:radial-gradient(ellipse,rgba(255,153,51,.9) 0%,rgba(255,80,0,.4) 60%,transparent 100%);animation:baseflicker 1.5s ease-in-out infinite;}
+  @keyframes baseflicker{0%,100%{opacity:.6;transform:translateX(-50%) scaleX(1)}50%{opacity:1;transform:translateX(-50%) scaleX(1.4)}}
+  .flame-svg{position:relative;z-index:2;filter:drop-shadow(0 0 25px rgba(255,153,51,.9)) drop-shadow(0 0 50px rgba(255,80,0,.5));}
+  .f-outer{animation:flick1 .8s ease-in-out infinite alternate;transform-origin:50% 100%;}
+  .f-mid{animation:flick2 .6s ease-in-out infinite alternate;transform-origin:50% 100%;}
+  .f-inner{animation:flick3 .4s ease-in-out infinite alternate;transform-origin:50% 100%;}
+  .f-core{animation:flick4 .3s ease-in-out infinite alternate;transform-origin:50% 100%;}
+  @keyframes flick1{0%{transform:scaleX(1) scaleY(1) rotate(-3deg)}100%{transform:scaleX(.92) scaleY(1.06) rotate(3deg)}}
+  @keyframes flick2{0%{transform:scaleX(1.05) scaleY(.97) rotate(2deg)}100%{transform:scaleX(.95) scaleY(1.08) rotate(-2deg)}}
+  @keyframes flick3{0%{transform:scaleX(.9) scaleY(1.1) rotate(-2deg)}100%{transform:scaleX(1.1) scaleY(.95) rotate(2deg)}}
+  @keyframes flick4{0%{transform:scaleX(1) scaleY(1)}100%{transform:scaleX(.85) scaleY(1.12)}}
+  .flame-caption{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.15em;color:rgba(255,255,255,.75);}
+  .flame-caption em{color:var(--saffron);font-style:normal;}
+  #heroes{padding:100px 40px;background:var(--bg2);}
+  @media(max-width:768px){#heroes{padding:70px 18px}}
+  .heroes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;max-width:1180px;margin:0 auto;}
+  .hero-card{position:relative;background:var(--card);border:1px solid rgba(255,153,51,.12);border-radius:3px;padding:30px 26px 44px;overflow:hidden;cursor:pointer;opacity:0;transform:translateY(36px);transition:opacity .6s ease,transform .6s ease,box-shadow .3s ease,border-color .3s ease;}
+  .hero-card.vis{opacity:1;transform:translateY(0);}
+  .hero-card.hero-hidden{display:none;}
+  .hero-card:hover{transform:translateY(-5px)!important;border-color:rgba(255,153,51,.4)!important;box-shadow:0 14px 50px rgba(0,0,0,.6),0 0 22px rgba(255,153,51,.1);}
+  .hero-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--saffron) 33%,#fff 33%,#fff 66%,var(--green) 66%);}
+  .card-rank{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.3em;color:var(--saffron);text-transform:uppercase;margin-bottom:7px;}
+  .card-name{font-family:'Cinzel',serif;font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:14px;line-height:1.2;}
+  .card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+  .ctag{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.15em;padding:4px 10px;border-radius:2px;text-transform:uppercase;}
+  .ctag-s{background:rgba(255,153,51,.12);border:1px solid rgba(255,153,51,.3);color:rgba(255,153,51,.9);}
+  .ctag-g{background:rgba(19,136,8,.1);border:1px solid rgba(19,136,8,.3);color:rgba(30,185,15,.9);}
+  .ctag-b{background:rgba(0,0,128,.15);border:1px solid rgba(100,130,255,.3);color:rgba(150,180,255,.9);}
+  .card-op{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:12px;}
+  .card-tribute{font-family:'Crimson Text',serif;font-size:.95rem;color:rgba(255,255,255,.68);line-height:1.65;font-style:italic;margin-bottom:16px;}
+  .card-award{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;}
+  .card-award::before{content:'* ';}
+  .card-yr{position:absolute;bottom:-8px;right:12px;font-family:'Cinzel',serif;font-size:4.5rem;font-weight:900;color:rgba(255,153,51,.06);pointer-events:none;user-select:none;line-height:1;}
+  .card-click-hint{position:absolute;bottom:12px;left:26px;font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.18em;color:rgba(255,153,51,.3);text-transform:uppercase;}
+  .show-more-wrap{text-align:center;margin-top:44px;}
+  .show-more-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 38px;background:transparent;border:1px solid rgba(255,153,51,.35);color:var(--saffron);font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;transition:all .3s;border-radius:2px;}
+  .show-more-btn:hover{background:rgba(255,153,51,.1);border-color:var(--saffron);box-shadow:0 0 22px rgba(255,153,51,.2);}
+  .btn-arrow{transition:transform .3s;display:inline-block;}
+  .show-more-btn.expanded .btn-arrow{transform:rotate(180deg);}
+  #heroModal{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);overflow-y:auto;padding:40px 20px;}
+  #heroModal.modal-open{display:flex;align-items:flex-start;justify-content:center;}
+  .modal-box{background:var(--card2);border:1px solid rgba(255,153,51,.22);border-radius:3px;max-width:800px;width:100%;padding:44px;position:relative;margin:auto;animation:modalIn .3s ease;}
+  @keyframes modalIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+  .modal-close{position:absolute;top:16px;right:18px;background:transparent;border:1px solid rgba(255,153,51,.25);color:var(--saffron);width:36px;height:36px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;}
+  .modal-close:hover{background:rgba(255,153,51,.15);border-color:var(--saffron);}
+  .modal-hero-wrap{display:flex;gap:28px;align-items:flex-start;margin-bottom:24px;}
+  .modal-img-col{flex:0 0 auto;}
+  .modal-hero-img{width:150px;height:190px;object-fit:cover;object-position:top center;border:2px solid rgba(255,153,51,.25);border-radius:2px;background:var(--card);display:block;}
+  .modal-info-col{flex:1;min-width:0;}
+  .modal-rank{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.32em;color:var(--saffron);text-transform:uppercase;margin-bottom:5px;}
+  .modal-name{font-family:'Cinzel',serif;font-size:clamp(1.25rem,3vw,1.75rem);font-weight:700;color:var(--text);margin-bottom:12px;line-height:1.2;}
+  .modal-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:11px;}
+  .modal-op{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;color:rgba(255,255,255,.45);text-transform:uppercase;margin-bottom:8px;}
+  .modal-dates{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-bottom:5px;}
+  .modal-birthplace{font-family:'Cinzel',serif;font-size:.57rem;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;}
+  .modal-detail{font-family:'Crimson Text',serif;font-size:1.05rem;color:rgba(255,255,255,.78);line-height:1.75;margin-bottom:20px;border-top:1px solid rgba(255,153,51,.1);padding-top:20px;clear:both;}
+  .modal-award-bar{display:flex;align-items:center;gap:10px;padding:12px 16px;background:rgba(255,153,51,.07);border:1px solid rgba(255,153,51,.15);border-radius:2px;}
+  .modal-award-star{color:var(--gold);font-size:1rem;}
+  .modal-award-text{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;}
+  @media(max-width:600px){.modal-hero-wrap{flex-direction:column;}.modal-hero-img{width:120px;height:155px;}.modal-box{padding:28px 18px;}}
+  #battles{padding:100px 40px;background:var(--bg3);}
+  @media(max-width:768px){#battles{padding:70px 18px}}
+  .battles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;max-width:1200px;margin:0 auto;}
+  .battle-card{background:var(--card2);border:1px solid rgba(255,153,51,.1);border-radius:3px;padding:28px 24px;position:relative;overflow:hidden;opacity:0;transform:translateY(28px);transition:opacity .6s,transform .6s,box-shadow .3s;}
+  .battle-card.vis{opacity:1;transform:translateY(0);}
+  .battle-card:hover{box-shadow:0 10px 40px rgba(0,0,0,.5);border-color:rgba(255,153,51,.28);}
+  .bc-yr-bg{position:absolute;bottom:-14px;right:-5px;font-family:'Cinzel',serif;font-size:6rem;font-weight:900;color:rgba(255,153,51,.05);pointer-events:none;user-select:none;line-height:1;}
+  .bc-name{font-family:'Cinzel',serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:6px;}
+  .bc-period{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.18em;color:var(--saffron);text-transform:uppercase;margin-bottom:12px;}
+  .bc-desc{font-family:'Crimson Text',serif;font-size:.95rem;color:rgba(255,255,255,.62);line-height:1.65;margin-bottom:16px;}
+  .bc-stats{display:flex;gap:20px;margin-bottom:14px;}
+  .bc-stat-num{display:block;font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700;color:var(--saffron);}
+  .bc-stat-lbl{display:block;font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+  .bc-moment{font-family:'Crimson Text',serif;font-size:.9rem;color:rgba(255,255,255,.45);font-style:italic;line-height:1.55;border-left:2px solid rgba(255,153,51,.2);padding-left:10px;}
+  #timeline{padding:100px 0;background:var(--bg2);overflow:hidden;}
+  .tl-head{padding:0 40px;margin-bottom:50px;}
+  .tl-track{position:relative;display:flex;overflow-x:auto;padding:30px 40px 60px;gap:0;scrollbar-width:thin;scrollbar-color:var(--saffron) transparent;}
+  .tl-line{position:absolute;top:58px;left:0;right:0;height:1px;background:linear-gradient(to right,transparent 2%,rgba(255,153,51,.4) 8%,rgba(255,153,51,.4) 92%,transparent 98%);pointer-events:none;}
+  .tl-item{flex:0 0 270px;position:relative;padding-top:90px;padding-right:16px;opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s;}
+  .tl-item.vis{opacity:1;transform:translateY(0);}
+  .tl-dot{position:absolute;top:50px;left:0;width:16px;height:16px;border-radius:50%;background:var(--saffron);border:3px solid var(--bg2);box-shadow:0 0 12px rgba(255,153,51,.7);z-index:2;transform:translateY(-50%);}
+  .tl-dot.g{background:var(--green);box-shadow:0 0 12px rgba(19,136,8,.7);}
+  .tl-yr{font-family:'Cinzel',serif;font-size:1.7rem;font-weight:900;color:var(--saffron);margin-bottom:6px;}
+  .tl-ev{font-family:'Cinzel',serif;font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:7px;}
+  .tl-desc{font-size:.82rem;color:var(--muted);line-height:1.6;padding-right:18px;}
+  #quotes{padding:100px 40px;background:radial-gradient(ellipse 100% 60% at 20% 50%,rgba(255,153,51,.04) 0%,transparent 60%),radial-gradient(ellipse 80% 50% at 80% 50%,rgba(19,136,8,.03) 0%,transparent 60%),var(--bg);}
+  @media(max-width:768px){#quotes{padding:70px 18px}}
+  .quotes-wrap{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:34px;}
+  .q-block{padding:36px 40px;background:rgba(255,255,255,.018);border:1px solid rgba(255,153,51,.09);border-radius:3px;position:relative;overflow:visible;opacity:0;transform:translateX(-28px);transition:opacity .6s,transform .6s;}
+  .q-block.vis{opacity:1;transform:translateX(0);}
+  .q-block:nth-child(even){transform:translateX(28px);}
+  .q-block:nth-child(even).vis{transform:translateX(0);}
+  .q-block.q-hidden{display:none;}
+  .q-mark{position:absolute;top:-22px;left:26px;font-family:'Cinzel',serif;font-size:5rem;color:rgba(255,153,51,.18);line-height:1;}
+  .q-text{font-family:'Crimson Text',serif;font-size:clamp(1.1rem,2.2vw,1.65rem);font-style:italic;color:var(--text);line-height:1.65;margin-bottom:18px;}
+  .q-author{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.3em;color:var(--saffron);text-transform:uppercase;}
+  @media(max-width:768px){.q-block{padding:26px 24px}}
+  #paramilitary{padding:100px 40px;background:var(--bg3);}
+  @media(max-width:768px){#paramilitary{padding:70px 18px}}
+  .para-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:22px;max-width:1180px;margin:0 auto;}
+  .para-card{background:var(--card);border:1px solid rgba(19,136,8,.15);border-radius:3px;padding:0 26px 32px;overflow:hidden;position:relative;opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s,box-shadow .3s,border-color .3s;}
+  .para-card.vis{opacity:1;transform:translateY(0);}
+  .para-card:hover{border-color:rgba(19,136,8,.4);box-shadow:0 10px 40px rgba(0,0,0,.5),0 0 20px rgba(19,136,8,.07);}
+  .para-topbar{height:4px;background:linear-gradient(to right,var(--saffron) 33%,#fff 33%,#fff 66%,var(--green) 66%);margin:0 -26px 28px;}
+  .para-force-name{font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+  .para-abbr{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.3em;color:var(--saffron);text-transform:uppercase;margin-bottom:8px;}
+  .para-est{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-bottom:10px;}
+  .para-role{font-family:'Crimson Text',serif;font-size:.98rem;color:rgba(255,255,255,.62);font-style:italic;margin-bottom:13px;line-height:1.55;}
+  .para-section-lbl{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.18em;color:var(--saffron);text-transform:uppercase;margin-bottom:4px;margin-top:10px;}
+  .para-ops-list{font-family:'Crimson Text',serif;font-size:.93rem;color:rgba(255,255,255,.58);line-height:1.6;}
+  .para-sacrifice{font-family:'Cinzel',serif;font-size:.85rem;font-weight:700;color:var(--green-light);margin:10px 0 4px;}
+  .para-tribute{font-family:'Crimson Text',serif;font-size:.93rem;color:rgba(255,255,255,.7);font-style:italic;line-height:1.6;border-left:2px solid rgba(19,136,8,.4);padding-left:12px;margin-top:10px;}
+  .para-motto{margin-top:12px;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.22em;color:rgba(255,153,51,.5);text-transform:uppercase;}
+  .para-yr-bg{position:absolute;bottom:-8px;right:10px;font-family:'Cinzel',serif;font-size:4.5rem;font-weight:900;color:rgba(19,136,8,.05);pointer-events:none;user-select:none;line-height:1;}
+  #special-forces{padding:100px 40px;background:var(--bg2);}
+  @media(max-width:768px){#special-forces{padding:70px 18px}}
+  .sf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px;max-width:1200px;margin:0 auto;}
+  .sf-card{background:var(--card);border:1px solid rgba(255,153,51,.1);border-radius:3px;padding:30px 26px;position:relative;overflow:hidden;opacity:0;transform:translateY(28px);transition:opacity .6s,transform .6s,box-shadow .3s,border-color .3s;}
+  .sf-card.vis{opacity:1;transform:translateY(0);}
+  .sf-card:hover{border-color:rgba(255,153,51,.38);box-shadow:0 14px 48px rgba(0,0,0,.65),0 0 28px rgba(255,153,51,.12);}
+  .sf-emblem{width:68px;height:68px;margin-bottom:16px;}
+  .sf-force-tag{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.3em;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+  .sf-name{font-family:'Cinzel',serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.25;}
+  .sf-est{font-family:'Cinzel',serif;font-size:.57rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-bottom:10px;}
+  .sf-warcry{font-family:'Crimson Text',serif;font-size:1.1rem;color:var(--saffron);font-style:italic;font-weight:600;margin-bottom:4px;}
+  .sf-motto{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:12px;}
+  .sf-section-lbl{font-family:'Cinzel',serif;font-size:.57rem;letter-spacing:.2em;color:var(--saffron);text-transform:uppercase;margin-bottom:3px;margin-top:10px;}
+  .sf-role{font-family:'Crimson Text',serif;font-size:.95rem;color:rgba(255,255,255,.62);line-height:1.6;}
+  .sf-tribute{font-family:'Crimson Text',serif;font-size:.95rem;font-style:italic;color:rgba(255,255,255,.7);line-height:1.6;border-left:2px solid rgba(255,153,51,.35);padding-left:12px;margin-top:12px;}
+  .sf-yr-bg{position:absolute;bottom:-10px;right:8px;font-family:'Cinzel',serif;font-size:5rem;font-weight:900;color:rgba(255,153,51,.04);pointer-events:none;user-select:none;line-height:1;}
+  #tribute{padding:120px 40px;text-align:center;background:radial-gradient(ellipse 90% 70% at 50% 40%,#120600 0%,var(--bg) 65%);position:relative;overflow:hidden;}
+  @media(max-width:768px){#tribute{padding:80px 18px}}
+  .trib-title{font-family:'Cinzel Decorative',serif;font-size:clamp(1.8rem,4.5vw,4rem);font-weight:900;background:linear-gradient(135deg,var(--saffron) 0%,var(--gold) 45%,#fff 70%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 25px rgba(255,153,51,.4));margin-bottom:22px;}
+  .trib-text{font-family:'Crimson Text',serif;font-size:clamp(1.05rem,1.8vw,1.35rem);color:rgba(255,255,255,.65);line-height:1.8;max-width:580px;margin:0 auto 48px;}
+  .trib-flag{margin:48px auto;width:220px;border-radius:3px;box-shadow:0 0 50px rgba(255,153,51,.25),0 0 100px rgba(255,153,51,.1);display:block;}
+  .salute{font-family:'Cinzel',serif;font-size:clamp(.9rem,1.8vw,1.4rem);letter-spacing:.35em;color:var(--saffron);text-transform:uppercase;}
+  footer{background:#000;border-top:1px solid rgba(255,153,51,.18);padding:36px 40px;text-align:center;}
+  .foot-line{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;color:rgba(255,255,255,.35);margin-bottom:12px;}
+  .foot-jai{font-family:'Cinzel Decorative',serif;font-size:1.4rem;font-weight:700;color:var(--saffron);letter-spacing:.2em;}
+  .foot-branches{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.18em;color:var(--dim);margin-top:10px;text-transform:uppercase;line-height:1.9;}
   </style>
 </head>
 <body>
-
-<!-- ======== LOADER ======== -->
-<div id="loader">
-  <svg id="loader-chakra" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg>
-  <div id="loader-text">JAI HIND · वन्दे मातरम्</div>
-</div>
-
-<!-- ======== PARTICLES ======== -->
+<div id="loader"><svg id="loader-chakra" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg><div id="loader-text">JAI HIND - Vande Mataram</div></div>
 <canvas id="particles"></canvas>
-
-<!-- ======== MUSIC ======== -->
-<button id="musicBtn" title="Toggle Patriotic Music" aria-label="Toggle music">♪</button>
+<button id="musicBtn" title="Toggle Music" aria-label="Toggle music">&#9834;</button>
 <span id="musicLabel">MUSIC</span>
 
-<!-- ======== NAV ======== -->
+<div id="heroModal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeHeroModal()">&#10005;</button>
+    <div class="modal-hero-wrap">
+      <div class="modal-img-col"><img id="mHeroImg" class="modal-hero-img" src="" alt="Hero Photo" loading="lazy"></div>
+      <div class="modal-info-col">
+        <div id="mHeroRank" class="modal-rank"></div>
+        <div id="mHeroName" class="modal-name"></div>
+        <div id="mHeroTags" class="modal-tags"></div>
+        <div id="mHeroOp" class="modal-op"></div>
+        <div id="mHeroDates" class="modal-dates"></div>
+        <div id="mHeroBp" class="modal-birthplace"></div>
+      </div>
+    </div>
+    <div id="mHeroDetail" class="modal-detail"></div>
+    <div class="modal-award-bar"><span class="modal-award-star">&#9733;</span><span id="mHeroAward" class="modal-award-text"></span></div>
+  </div>
+</div>
+
 <nav id="nav">
-  <a class="nav-brand" href="#hero">VEER SHAHEED 🇮🇳</a>
+  <a class="nav-brand" href="#hero">VEER SHAHEED</a>
   <ul class="nav-links">
     <li><a href="#flame">Eternal Flame</a></li>
     <li><a href="#heroes">Wall of Heroes</a></li>
     <li><a href="#battles">Battles</a></li>
     <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#quotes">Voices</a></li>
+    <li><a href="#paramilitary">CAPF</a></li>
+    <li><a href="#special-forces">Special Forces</a></li>
     <li><a href="#tribute">Tribute</a></li>
   </ul>
 </nav>
 
-<!-- ======== HERO ======== -->
 <section id="hero">
   <div class="hero-bg-glow"></div>
-  <div class="rays">
-    <div class="ray"></div><div class="ray"></div><div class="ray"></div>
-    <div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div>
-  </div>
+  <div class="rays"><div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div></div>
   <canvas id="flagCanvas" width="300" height="190"></canvas>
-  <div class="hero-chakra-wrap">
-    <svg width="200" height="200" viewBox="0 0 100 100" id="sideChakra"></svg>
-  </div>
+  <div class="hero-chakra-wrap"><svg width="200" height="200" viewBox="0 0 100 100" id="sideChakra"></svg></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">🇮🇳 &nbsp; A Nation's Eternal Remembrance &nbsp; 🇮🇳</p>
+    <p class="hero-eyebrow">A Nation's Eternal Remembrance</p>
     <h1 class="hero-title">Veer Shaheed<br>Eternal Guardians of India</h1>
     <p class="hero-sub">Remembering the brave soldiers who laid down their lives so that India may live in peace, freedom, and dignity forever.</p>
     <div class="hero-quote-box">"They gave their today for our tomorrow."</div>
   </div>
-  <div class="scroll-ind">
-    <span>scroll to honour</span>
-    <div class="scroll-arrow"></div>
-  </div>
+  <div class="scroll-ind"><span>scroll to honour</span><div class="scroll-arrow"></div></div>
 </section>
-
 <div class="tc glow"></div>
 
-<!-- ======== FLAME ======== -->
 <section id="flame">
-  <div class="sec-head reveal">
-    <span class="sec-tag">Amar Jawan Jyoti</span>
-    <h2 class="sec-title">The Eternal Flame</h2>
-    <p class="sec-desc">A flame that never dies — symbol of undying respect for every soldier who gave their life for the motherland.</p>
-  </div>
+  <div class="sec-head reveal"><span class="sec-tag">Amar Jawan Jyoti</span><h2 class="sec-title">The Eternal Flame</h2><p class="sec-desc">A flame that never dies - symbol of undying respect for every soldier who gave their life for the motherland.</p></div>
   <div class="flame-wrap reveal">
     <div class="flame-base-glow"></div>
     <svg class="flame-svg" width="120" height="200" viewBox="0 0 120 200">
       <defs>
-        <radialGradient id="fg1" cx="50%" cy="90%" r="60%">
-          <stop offset="0%" stop-color="#FFD700"/>
-          <stop offset="40%" stop-color="#FF8C00"/>
-          <stop offset="100%" stop-color="rgba(255,60,0,0)"/>
-        </radialGradient>
-        <radialGradient id="fg2" cx="50%" cy="90%" r="60%">
-          <stop offset="0%" stop-color="#FFE066"/>
-          <stop offset="50%" stop-color="#FF6600"/>
-          <stop offset="100%" stop-color="rgba(255,40,0,0)"/>
-        </radialGradient>
-        <radialGradient id="fg3" cx="50%" cy="90%" r="50%">
-          <stop offset="0%" stop-color="#FFFDE0"/>
-          <stop offset="40%" stop-color="#FFD700"/>
-          <stop offset="100%" stop-color="rgba(255,150,0,0)"/>
-        </radialGradient>
-        <radialGradient id="fg4" cx="50%" cy="90%" r="40%">
-          <stop offset="0%" stop-color="#FFFFFF"/>
-          <stop offset="50%" stop-color="#FFE566"/>
-          <stop offset="100%" stop-color="rgba(255,200,0,0)"/>
-        </radialGradient>
+        <radialGradient id="fg1" cx="50%" cy="90%" r="60%"><stop offset="0%" stop-color="#FFD700"/><stop offset="40%" stop-color="#FF8C00"/><stop offset="100%" stop-color="rgba(255,60,0,0)"/></radialGradient>
+        <radialGradient id="fg2" cx="50%" cy="90%" r="60%"><stop offset="0%" stop-color="#FFE066"/><stop offset="50%" stop-color="#FF6600"/><stop offset="100%" stop-color="rgba(255,40,0,0)"/></radialGradient>
+        <radialGradient id="fg3" cx="50%" cy="90%" r="50%"><stop offset="0%" stop-color="#FFFDE0"/><stop offset="40%" stop-color="#FFD700"/><stop offset="100%" stop-color="rgba(255,150,0,0)"/></radialGradient>
+        <radialGradient id="fg4" cx="50%" cy="90%" r="40%"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="50%" stop-color="#FFE566"/><stop offset="100%" stop-color="rgba(255,200,0,0)"/></radialGradient>
       </defs>
-      <!-- Outer flame -->
       <path class="f-outer" d="M60,200 C20,180 5,150 15,110 C22,80 35,65 45,45 C50,30 52,10 60,0 C68,10 70,30 75,45 C85,65 98,80 105,110 C115,150 100,180 60,200 Z" fill="url(#fg1)" opacity="0.9"/>
-      <!-- Mid flame -->
       <path class="f-mid" d="M60,195 C28,175 18,148 26,112 C32,86 44,72 52,54 C56,40 58,22 60,8 C62,22 64,40 68,54 C76,72 88,86 94,112 C102,148 92,175 60,195 Z" fill="url(#fg2)"/>
-      <!-- Inner flame -->
       <path class="f-inner" d="M60,192 C35,170 30,145 36,114 C41,90 50,78 55,60 C57,46 58,30 60,16 C62,30 63,46 65,60 C70,78 79,90 84,114 C90,145 85,170 60,192 Z" fill="url(#fg3)"/>
-      <!-- Core -->
       <path class="f-core" d="M60,186 C44,165 42,142 47,118 C51,98 57,88 59,70 C59,56 59.5,40 60,24 C60.5,40 61,56 61,70 C63,88 69,98 73,118 C78,142 76,165 60,186 Z" fill="url(#fg4)" opacity="0.95"/>
-      <!-- Wick/base -->
       <rect x="52" y="192" width="16" height="8" rx="3" fill="#1a0a00"/>
     </svg>
   </div>
   <p class="flame-caption reveal">The flame of <em>sacrifice</em> burns forever.</p>
 </section>
-
 <div class="tc"></div>
 
-<!-- ======== WALL OF HEROES ======== -->
 <section id="heroes">
   <div class="sec-wrap">
     <div class="sec-head reveal">
-      <span class="sec-tag">Wall of Heroes — वीर स्मृति</span>
+      <span class="sec-tag">Wall of Heroes - Veer Smriti</span>
       <h2 class="sec-title">Immortal Sons of India</h2>
-      <p class="sec-desc">These names are etched in the soul of the nation. Their sacrifice will never be forgotten.</p>
+      <p class="sec-desc">These names are etched in the soul of the nation. Their sacrifice will never be forgotten. Click any card to read their full story.</p>
     </div>
-    <div class="heroes-grid">
-
-      <div class="hero-card">
-        <div class="card-rank">Captain · Indian Army</div>
-        <div class="card-name">Vikram Batra</div>
-        <div class="card-tags">
-          <span class="ctag ctag-s">13 JAK RIF</span>
-          <span class="ctag ctag-g">Kargil War</span>
-        </div>
-        <div class="card-op">Operation Vijay · Peak 4875</div>
-        <div class="card-tribute">"Yeh dil maange more." He stormed enemy positions under relentless fire, capturing peak after peak, before making the ultimate sacrifice on July 7, 1999.</div>
-        <div class="card-award">Param Vir Chakra — Posthumous</div>
-        <div class="card-yr">1999</div>
-      </div>
-
-      <div class="hero-card">
-        <div class="card-rank">Major · NSG / Indian Army</div>
-        <div class="card-name">Sandeep Unnikrishnan</div>
-        <div class="card-tags">
-          <span class="ctag ctag-s">51 SAG, NSG</span>
-          <span class="ctag ctag-g">26/11 Mumbai</span>
-        </div>
-        <div class="card-op">Counter-Terrorism · Hotel Taj Mahal</div>
-        <div class="card-tribute">"Don't come up — I'll handle them." He fought alone against multiple terrorists to protect hostages at the Taj Mahal Hotel, laying down his life on November 28, 2008.</div>
-        <div class="card-award">Ashoka Chakra — Posthumous</div>
-        <div class="card-yr">2008</div>
-      </div>
-
-      <div class="hero-card">
-        <div class="card-rank">Major · Indian Army</div>
-        <div class="card-name">Shaitan Singh</div>
-        <div class="card-tags">
-          <span class="ctag ctag-s">13 Kumaon Rgt.</span>
-          <span class="ctag ctag-g">1962 Sino-Indian War</span>
-        </div>
-        <div class="card-op">Battle of Rezang La · Chushul</div>
-        <div class="card-tribute">Led 114 soldiers against 1,000+ Chinese troops at 16,000 ft. Every man fought to his last bullet. Their stand at Rezang La is one of the greatest last stands in military history.</div>
-        <div class="card-award">Param Vir Chakra — Posthumous</div>
-        <div class="card-yr">1962</div>
-      </div>
-
-      <div class="hero-card">
-        <div class="card-rank">Flying Officer · Indian Air Force</div>
-        <div class="card-name">Nirmal Jit Singh Sekhon</div>
-        <div class="card-tags">
-          <span class="ctag ctag-s">18 Squadron IAF</span>
-          <span class="ctag ctag-g">1971 Indo-Pak War</span>
-        </div>
-        <div class="card-op">Defence of Srinagar Airbase</div>
-        <div class="card-tribute">Single-handedly took on six Pakistani Sabre jets in his Gnat aircraft to defend the Srinagar airbase. He shot down two enemy aircraft before his own plane was hit. India's lone air warrior.</div>
-        <div class="card-award">Param Vir Chakra — Posthumous</div>
-        <div class="card-yr">1971</div>
-      </div>
-
-      <div class="hero-card">
-        <div class="card-rank">Lieutenant · Indian Army</div>
-        <div class="card-name">Manoj Kumar Pandey</div>
-        <div class="card-tags">
-          <span class="ctag ctag-s">1/11 GR (Gorkha Rifles)</span>
-          <span class="ctag ctag-g">Kargil War</span>
-        </div>
-        <div class="card-op">Operation Vijay · Batalik Sector</div>
-        <div class="card-tribute">"Na Chhodnu" — he would never leave. Leading his platoon through Khalubar heights, he cleared four enemy pickets single-handedly before falling in the final charge on July 3, 1999.</div>
-        <div class="card-award">Param Vir Chakra — Posthumous</div>
-        <div class="card-yr">1999</div>
-      </div>
-
-      <div class="hero-card">
-        <div class="card-rank">Captain · Indian Army</div>
-        <div class="card-name">Anuj Nayyar</div>
-        <div class="card-tags">
-          <span class="ctag ctag-s">17 Jat Regiment</span>
-          <span class="ctag ctag-g">Kargil War</span>
-        </div>
-        <div class="card-op">Operation Vijay · Tiger Hill</div>
-        <div class="card-tribute">Charged enemy bunkers on Tiger Hill under heavy machine-gun fire, ensuring his company succeeded in recapturing the strategic peak. Fell at age 24, a hero for all time.</div>
-        <div class="card-award">Maha Vir Chakra — Posthumous</div>
-        <div class="card-yr">1999</div>
-      </div>
-
-      <div class="hero-card">
-        <div class="card-rank">Company Havildar Major · Indian Army</div>
-        <div class="card-name">Abdul Hamid</div>
-        <div class="card-tags">
-          <span class="ctag ctag-s">4 Grenadiers</span>
-          <span class="ctag ctag-g">1965 Indo-Pak War</span>
-        </div>
-        <div class="card-op">Battle of Asal Uttar · Khem Karan</div>
-        <div class="card-tribute">Destroyed a column of Pakistan's invincible Patton tanks using a recoilless rifle from a jeep, exposing himself to devastating enemy fire. Martyred while taking out his seventh tank. The legend of Asal Uttar lives in him.</div>
-        <div class="card-award">Param Vir Chakra — Posthumous</div>
-        <div class="card-yr">1965</div>
-      </div>
-
-      <div class="hero-card">
-        <div class="card-rank">Second Lieutenant · Indian Army</div>
-        <div class="card-name">Arun Khetarpal</div>
-        <div class="card-tags">
-          <span class="ctag ctag-s">17 Poona Horse</span>
-          <span class="ctag ctag-g">1971 Indo-Pak War</span>
-        </div>
-        <div class="card-op">Battle of Basantar · Shakargarh</div>
-        <div class="card-tribute">Refused evacuation with a burning tank, pressing forward to destroy a superior Pakistani armoured column. "Pulton ko retreat nahin karoonga." Just 21 years old. India's youngest PVC recipient.</div>
-        <div class="card-award">Param Vir Chakra — Posthumous</div>
-        <div class="card-yr">1971</div>
-      </div>
-
-    </div>
+    <div class="heroes-grid" id="heroesGrid"></div>
+    <div class="show-more-wrap"><button class="show-more-btn" id="heroShowMoreBtn"><span class="btn-text">View More Bravehearts</span><span class="btn-arrow">&#8964;</span></button></div>
   </div>
 </section>
-
 <div class="tc glow"></div>
 
-<!-- ======== BATTLES ======== -->
 <section id="battles">
   <div class="sec-wrap">
-    <div class="sec-head reveal">
-      <span class="sec-tag">Battles & Sacrifices — रण-स्मरण</span>
-      <h2 class="sec-title">When India Was Tested</h2>
-      <p class="sec-desc">In every war and every operation, India's soldiers answered the call with unimaginable valour.</p>
-    </div>
+    <div class="sec-head reveal"><span class="sec-tag">Blood and Steel - Yuddha Smarika</span><h2 class="sec-title">Battles That Forged a Nation</h2><p class="sec-desc">From the icy peaks of Kashmir to the deserts of Rajasthan - every battle India fought was a testament to courage beyond measure.</p></div>
     <div class="battles-grid">
-
-      <div class="battle-card">
-        <div class="bc-yr-bg">1999</div>
-        <div class="bc-icon">⚔️</div>
-        <div class="bc-name">Kargil War</div>
-        <div class="bc-period">May — July 1999 · Operation Vijay</div>
-        <div class="bc-desc">Pakistani infiltrators occupied Indian peaks at 15,000–18,000 ft. The Indian Army fought brutal uphill battles in sub-zero conditions to reclaim every inch of sovereign territory.</div>
-        <div class="bc-stats">
-          <div><span class="bc-stat-num">527+</span><span class="bc-stat-lbl">Martyrs</span></div>
-          <div><span class="bc-stat-num">1,363</span><span class="bc-stat-lbl">Wounded</span></div>
-        </div>
-        <div class="bc-moment">Peak 5140 captured at dawn, Point 4875 reclaimed by Vikram Batra — India's flag flew again over every peak by July 26.</div>
-      </div>
-
-      <div class="battle-card">
-        <div class="bc-yr-bg">1971</div>
-        <div class="bc-icon">🎖️</div>
-        <div class="bc-name">Bangladesh Liberation War</div>
-        <div class="bc-period">December 1971 · Operation Trident</div>
-        <div class="bc-desc">India's finest military hour — a swift 13-day campaign that liberated Bangladesh, led by Field Marshal Sam Manekshaw. The largest military surrender since World War II followed.</div>
-        <div class="bc-stats">
-          <div><span class="bc-stat-num">3,843</span><span class="bc-stat-lbl">Martyrs</span></div>
-          <div><span class="bc-stat-num">93,000</span><span class="bc-stat-lbl">POWs Taken</span></div>
-        </div>
-        <div class="bc-moment">Pakistan's Eastern Command surrendered on December 16, 1971 — now celebrated as Vijay Diwas.</div>
-      </div>
-
-      <div class="battle-card">
-        <div class="bc-yr-bg">1962</div>
-        <div class="bc-icon">🏔️</div>
-        <div class="bc-name">Sino-Indian War</div>
-        <div class="bc-period">October — November 1962</div>
-        <div class="bc-desc">Against overwhelming odds and inadequate supplies, Indian soldiers fought heroic delaying actions in the Himalayas. The Battle of Rezang La saw 114 men fight over 1,000 — every bullet spent.</div>
-        <div class="bc-stats">
-          <div><span class="bc-stat-num">3,000+</span><span class="bc-stat-lbl">Martyrs</span></div>
-          <div><span class="bc-stat-num">114</span><span class="bc-stat-lbl">Heroes of Rezang La</span></div>
-        </div>
-        <div class="bc-moment">When the snow melted in spring 1963, every man of C Company was found dead, still facing the enemy.</div>
-      </div>
-
-      <div class="battle-card">
-        <div class="bc-yr-bg">1984</div>
-        <div class="bc-icon">🪖</div>
-        <div class="bc-name">Operation Meghdoot</div>
-        <div class="bc-period">April 1984 · Siachen Glacier</div>
-        <div class="bc-desc">India's audacious pre-dawn airlift of troops onto the world's highest battlefield — the Siachen Glacier at 22,000 ft. Soldiers continue to guard this icy post at the cost of their lives, year after year.</div>
-        <div class="bc-stats">
-          <div><span class="bc-stat-num">22,000 ft</span><span class="bc-stat-lbl">Altitude</span></div>
-          <div><span class="bc-stat-num">40 years</span><span class="bc-stat-lbl">Of vigil</span></div>
-        </div>
-        <div class="bc-moment">More Indian soldiers have died from the extreme cold and altitude than from enemy fire — yet no post has ever been abandoned.</div>
-      </div>
-
-      <div class="battle-card">
-        <div class="bc-yr-bg">1965</div>
-        <div class="bc-icon">🛡️</div>
-        <div class="bc-name">Indo-Pakistan War 1965</div>
-        <div class="bc-period">August — September 1965 · Operation Grand Slam</div>
-        <div class="bc-desc">Pakistan launched a massive armoured thrust in Operation Grand Slam. India's response — Operation Riddle — led to the Battle of Asal Uttar, where Pakistan's vaunted Patton tanks were turned to burning wrecks.</div>
-        <div class="bc-stats">
-          <div><span class="bc-stat-num">3,264</span><span class="bc-stat-lbl">Martyrs</span></div>
-          <div><span class="bc-stat-num">97</span><span class="bc-stat-lbl">Patton Tanks Destroyed</span></div>
-        </div>
-        <div class="bc-moment">Pakistan's 1 Armoured Division — the "Sword Arm" — was shattered at Asal Uttar. Havildar Abdul Hamid destroyed seven tanks alone.</div>
-      </div>
-
-      <div class="battle-card">
-        <div class="bc-yr-bg">2008</div>
-        <div class="bc-icon">🦅</div>
-        <div class="bc-name">Mumbai 26/11</div>
-        <div class="bc-period">November 26–29, 2008 · NSG Operation</div>
-        <div class="bc-desc">Ten terrorists paralysed India's financial capital for three nights. The NSG's Black Cats, Mumbai Police, and MARCOS commandos fought building by building, floor by floor, to neutralise every threat.</div>
-        <div class="bc-stats">
-          <div><span class="bc-stat-num">9</span><span class="bc-stat-lbl">Security Martyrs</span></div>
-          <div><span class="bc-stat-num">60 hrs</span><span class="bc-stat-lbl">Of battle</span></div>
-        </div>
-        <div class="bc-moment">Hemant Karkare, Ashok Kamte, Vijay Salaskar, Sandeep Unnikrishnan — heroes who ran toward the gunfire.</div>
-      </div>
-
+      <div class="battle-card"><div class="bc-yr-bg">1999</div><div class="bc-name">Kargil War - Operation Vijay</div><div class="bc-period">May - July 1999, Jammu and Kashmir</div><div class="bc-desc">Pakistan's secret infiltration into Indian peaks triggered India's most televised war. Soldiers scaled impossible cliffs under enemy fire to reclaim every inch of soil. Vijay Diwas - July 26, 1999.</div><div class="bc-stats"><div><span class="bc-stat-num">527</span><span class="bc-stat-lbl">Martyrs</span></div><div><span class="bc-stat-num">18,000 ft</span><span class="bc-stat-lbl">Avg. Altitude</span></div></div><div class="bc-moment">Every peak was captured not by artillery alone, but by men who climbed through the night and charged at dawn. Each one a hero.</div></div>
+      <div class="battle-card"><div class="bc-yr-bg">1971</div><div class="bc-name">Bangladesh Liberation War</div><div class="bc-period">December 3-16, 1971</div><div class="bc-desc">India's finest military hour. Field Marshal Sam Manekshaw's masterstroke liberated 75 million people in 13 days. Pakistan's eastern command surrendered 93,000 troops - the largest since World War II.</div><div class="bc-stats"><div><span class="bc-stat-num">3,843</span><span class="bc-stat-lbl">Martyrs</span></div><div><span class="bc-stat-num">93,000</span><span class="bc-stat-lbl">Enemy Surrendered</span></div></div><div class="bc-moment">Vijay Diwas, December 16, 1971. A new nation was born. India's armed forces had written history in thirteen days.</div></div>
+      <div class="battle-card"><div class="bc-yr-bg">1962</div><div class="bc-name">Battle of Rezang La</div><div class="bc-period">November 18, 1962 - Sino-Indian War</div><div class="bc-desc">Major Shaitan Singh and 114 men of 13 Kumaon held Rezang La at 16,000 ft against 1,000+ Chinese troops. No one retreated. Every man fought to his last bullet.</div><div class="bc-stats"><div><span class="bc-stat-num">114</span><span class="bc-stat-lbl">Heroes</span></div><div><span class="bc-stat-num">16,000 ft</span><span class="bc-stat-lbl">Altitude</span></div></div><div class="bc-moment">When the snow melted in spring 1963, every man of C Company was found frozen, still facing the enemy.</div></div>
+      <div class="battle-card"><div class="bc-yr-bg">1984</div><div class="bc-name">Operation Meghdoot - Siachen</div><div class="bc-period">April 1984 - Siachen Glacier</div><div class="bc-desc">India's audacious pre-dawn airlift of troops onto the world's highest battlefield at 22,000 ft. Soldiers guard this icy post at the cost of their lives, year after year without pause.</div><div class="bc-stats"><div><span class="bc-stat-num">22,000 ft</span><span class="bc-stat-lbl">Altitude</span></div><div><span class="bc-stat-num">40+ years</span><span class="bc-stat-lbl">Of vigil</span></div></div><div class="bc-moment">More Indian soldiers have died from extreme cold and altitude than from enemy fire. Yet no post has ever been abandoned.</div></div>
+      <div class="battle-card"><div class="bc-yr-bg">1965</div><div class="bc-name">Indo-Pakistan War 1965</div><div class="bc-period">August - September 1965, Asal Uttar</div><div class="bc-desc">Pakistan launched a massive armoured thrust. India's response turned Pakistan's vaunted Patton tanks to burning wrecks at Asal Uttar. Havildar Abdul Hamid destroyed seven tanks alone with a recoilless rifle from a jeep.</div><div class="bc-stats"><div><span class="bc-stat-num">3,264</span><span class="bc-stat-lbl">Martyrs</span></div><div><span class="bc-stat-num">97</span><span class="bc-stat-lbl">Pattons Destroyed</span></div></div><div class="bc-moment">Asal Uttar became Patton Nagar - Graveyard of Pattons. The sword arm of Pakistan lay shattered.</div></div>
+      <div class="battle-card"><div class="bc-yr-bg">2008</div><div class="bc-name">Mumbai 26/11</div><div class="bc-period">November 26-29, 2008 - NSG Operation</div><div class="bc-desc">Ten terrorists paralysed India's financial capital for three nights. NSG Black Cats, Mumbai Police, and MARCOS commandos fought building by building, floor by floor.</div><div class="bc-stats"><div><span class="bc-stat-num">9</span><span class="bc-stat-lbl">Security Martyrs</span></div><div><span class="bc-stat-num">60 hrs</span><span class="bc-stat-lbl">Of battle</span></div></div><div class="bc-moment">Hemant Karkare, Vijay Salaskar, Sandeep Unnikrishnan, Tukaram Omble - heroes who ran toward the gunfire.</div></div>
     </div>
   </div>
 </section>
-
 <div class="tc"></div>
 
-<!-- ======== TIMELINE ======== -->
 <section id="timeline">
-  <div class="tl-head sec-head reveal">
-    <span class="sec-tag">Military History — इतिहास</span>
-    <h2 class="sec-title">India's Timeline of Valour</h2>
-    <p class="sec-desc">From Independence to the present — a nation's unbroken story of sacrifice and strength.</p>
-  </div>
+  <div class="tl-head sec-head reveal"><span class="sec-tag">Military History - Itihaas</span><h2 class="sec-title">India's Timeline of Valour</h2><p class="sec-desc">From Independence to the present - a nation's unbroken story of sacrifice and strength.</p></div>
   <div class="tl-track" id="tlTrack">
     <div class="tl-line"></div>
-
-    <div class="tl-item">
-      <div class="tl-dot g"></div>
-      <div class="tl-yr">1947</div>
-      <div class="tl-ev">Independence & First Kashmir War</div>
-      <div class="tl-desc">India gains freedom. The very next day, Pakistan-backed tribal forces invade Kashmir. Indian Army airlifted to Srinagar — the first test of the new nation's armed forces.</div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-yr">1962</div>
-      <div class="tl-ev">Sino-Indian War</div>
-      <div class="tl-desc">China attacks across the Himalayas. Outnumbered Indian soldiers fight with frozen rifles and minimal supplies, showing extraordinary courage against overwhelming odds.</div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-yr">1965</div>
-      <div class="tl-ev">Indo-Pakistan War</div>
-      <div class="tl-desc">Pakistan's Operation Grand Slam meets India's iron resolve. The Battle of Asal Uttar shatters Pakistan's armoured corps. India fights to a honourable stalemate and stands unbroken.</div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-dot g"></div>
-      <div class="tl-yr">1971</div>
-      <div class="tl-ev">Bangladesh Liberation</div>
-      <div class="tl-desc">India's finest military hour. A 13-day campaign liberates 75 million people. Sam Manekshaw's masterstroke ends with the largest military surrender since WWII — Vijay Diwas, December 16.</div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-yr">1984</div>
-      <div class="tl-ev">Operation Meghdoot</div>
-      <div class="tl-desc">India captures the Siachen Glacier at 22,000 ft — the world's highest battlefield. A bold pre-emptive move that India has held for four decades through unimaginable sacrifice.</div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-dot g"></div>
-      <div class="tl-yr">1999</div>
-      <div class="tl-ev">Kargil War</div>
-      <div class="tl-desc">Pakistani infiltration triggers India's most televised war. Operation Vijay sees Indian soldiers storm impossible peaks in summer snow and under live fire. Every peak reclaimed. Vijay.</div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-yr">2016</div>
-      <div class="tl-ev">Surgical Strikes</div>
-      <div class="tl-desc">In retaliation for the Uri attack that killed 19 soldiers, India conducts precision surgical strikes across the LoC — a powerful demonstration of decisive force and military capability.</div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-dot g"></div>
-      <div class="tl-yr">Today</div>
-      <div class="tl-ev">Eternal Vigil</div>
-      <div class="tl-desc">From Siachen to the Rann of Kutch, from the Eastern frontier to the deep seas — 1.4 million soldiers stand watch tonight, so every Indian can sleep safely. Their sacrifice continues.</div>
-    </div>
-
+    <div class="tl-item"><div class="tl-dot g"></div><div class="tl-yr">1947</div><div class="tl-ev">Independence and First Kashmir War</div><div class="tl-desc">India gains freedom. The very next day, Pakistan-backed tribal forces invade Kashmir. Indian Army airlifted to Srinagar - the first test of the new nation's armed forces.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-yr">1962</div><div class="tl-ev">Sino-Indian War</div><div class="tl-desc">China attacks across the Himalayas. Outnumbered Indian soldiers fight with frozen rifles and minimal supplies, showing extraordinary courage against overwhelming odds at Rezang La and NEFA.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-yr">1965</div><div class="tl-ev">Indo-Pakistan War</div><div class="tl-desc">Pakistan's Operation Grand Slam meets India's iron resolve. The Battle of Asal Uttar shatters Pakistan's armoured corps. India stands unbroken.</div></div>
+    <div class="tl-item"><div class="tl-dot g"></div><div class="tl-yr">1971</div><div class="tl-ev">Bangladesh Liberation</div><div class="tl-desc">India's finest military hour. A 13-day campaign liberates 75 million people. Sam Manekshaw's masterstroke ends with the largest military surrender since WWII. Vijay Diwas, December 16.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-yr">1984</div><div class="tl-ev">Operation Meghdoot</div><div class="tl-desc">India captures the Siachen Glacier at 22,000 ft - the world's highest battlefield. A bold pre-emptive move that India has held for four decades through unimaginable sacrifice.</div></div>
+    <div class="tl-item"><div class="tl-dot g"></div><div class="tl-yr">1999</div><div class="tl-ev">Kargil War</div><div class="tl-desc">Pakistani infiltration triggers India's most televised war. Operation Vijay sees Indian soldiers storm impossible peaks in summer snow and under live fire. Every peak reclaimed. Vijay.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-yr">2016</div><div class="tl-ev">Surgical Strikes</div><div class="tl-desc">In retaliation for the Uri attack that killed 19 soldiers, India conducts precision surgical strikes across the LoC - a powerful demonstration of decisive force and military capability.</div></div>
+    <div class="tl-item"><div class="tl-dot g"></div><div class="tl-yr">2019</div><div class="tl-ev">Operation Bandar - Balakot Airstrike</div><div class="tl-desc">Following the Pulwama attack that martyred 40 CRPF jawans, IAF Mirage 2000 jets crossed into Pakistan and struck Jaish-e-Mohammed camps at Balakot on February 26. India crossed the border for the first time since 1971. Wing Commander Abhinandan Varthaman was shot down in aerial combat and returned home a national hero.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-yr">2020</div><div class="tl-ev">Galwan Valley Clash</div><div class="tl-desc">20 Indian Army soldiers led by Colonel Santosh Babu fell in fierce hand-to-hand combat with PLA troops in Galwan Valley, Ladakh. India stood its ground and refused to yield a single inch. The nation mourned. The Army held the line.</div></div>
+    <div class="tl-item"><div class="tl-dot g"></div><div class="tl-yr">2025</div><div class="tl-ev">Operation Sindoor</div><div class="tl-desc">Following the Pahalgam terror attack that killed 26 civilians, India launched Operation Sindoor in May 2025 - coordinated strikes targeting nine terrorist infrastructure sites in Pakistan and Pakistan-Occupied Kashmir. Indian Air Force, Army, and Navy acted in concert. India sent a message that cannot be misread: every attack on her people will have a cost.</div></div>
+    <div class="tl-item"><div class="tl-dot g"></div><div class="tl-yr">Today</div><div class="tl-ev">Eternal Vigil</div><div class="tl-desc">From Siachen to the Rann of Kutch, from the Eastern frontier to the deep seas - 1.4 million soldiers stand watch tonight, so every Indian can sleep safely. Their sacrifice continues.</div></div>
   </div>
 </section>
-
 <div class="tc glow"></div>
 
-<!-- ======== QUOTES ======== -->
 <section id="quotes">
   <div class="sec-wrap">
-    <div class="sec-head reveal">
-      <span class="sec-tag">Words of Eternal Courage</span>
-      <h2 class="sec-title">Voices of the Brave</h2>
-    </div>
-    <div class="quotes-wrap">
-
-      <div class="q-block">
-        <div class="q-mark">"</div>
-        <div class="q-text">Yeh dil maange more.</div>
-        <div class="q-author">Captain Vikram Batra, PVC — Kargil War, 1999</div>
-      </div>
-
-      <div class="q-block">
-        <div class="q-mark">"</div>
-        <div class="q-text">Some goals are so worthy, it is glorious even to fail.</div>
-        <div class="q-author">Inscription at the National Defence Academy, Khadakwasla</div>
-      </div>
-
-      <div class="q-block">
-        <div class="q-mark">"</div>
-        <div class="q-text">I regret I have only one life to give for my country.</div>
-        <div class="q-author">Widely attributed to Indian soldiers who fell in the line of duty</div>
-      </div>
-
-      <div class="q-block">
-        <div class="q-mark">"</div>
-        <div class="q-text">The nation sleeps peacefully in its beds because rough men stand ready to visit violence on those who would do it harm. Those rough men are our soldiers.</div>
-        <div class="q-author">Armed Forces Tribute — India</div>
-      </div>
-
-      <div class="q-block">
-        <div class="q-mark">"</div>
-        <div class="q-text">We live in freedom because of the soldiers who chose duty over comfort, honour over life itself. They are etched in the soul of the motherland forever.</div>
-        <div class="q-author">Veer Bhumi Memorial — New Delhi</div>
-      </div>
-
-      <div class="q-block">
-        <div class="q-mark">"</div>
-        <div class="q-text">When you go home, tell them of us and say — for your tomorrow, we gave our today.</div>
-        <div class="q-author">Kohima Memorial Epitaph — 2nd British Division, adopted by Indian memorials</div>
-      </div>
-
-    </div>
+    <div class="sec-head reveal"><span class="sec-tag">Words of Eternal Courage</span><h2 class="sec-title">Voices of the Brave</h2><p class="sec-desc">Words from the hearts of those who gave everything - soldiers, generals, and the memorials that remember them.</p></div>
+    <div class="quotes-wrap" id="quotesWrap"></div>
+    <div class="show-more-wrap" style="margin-top:40px"><button class="show-more-btn" id="quotesShowMoreBtn"><span class="btn-text">More Voices of Courage</span><span class="btn-arrow">&#8964;</span></button></div>
   </div>
 </section>
-
 <div class="tc"></div>
 
-<!-- ======== TRIBUTE ======== -->
-<section id="tribute">
+<section id="paramilitary">
   <div class="sec-wrap">
-    <div class="reveal">
-      <h2 class="trib-title">A Nation Salutes<br>Its Heroes</h2>
-      <p class="trib-text">India will forever remember the courage, the sacrifice, and the love of those who gave everything — their youth, their future, their lives — so that this nation may breathe free. Their names are inscribed not just on stone memorials, but in the heart of every Indian.</p>
-    </div>
-    <canvas class="trib-flag" id="tributeCanvas" width="220" height="140"></canvas>
-    <div class="reveal">
-      <p class="salute">🇮🇳 &nbsp; A Nation Bows in Eternal Gratitude &nbsp; 🇮🇳</p>
+    <div class="sec-head reveal"><span class="sec-tag">Central Armed Police Forces - CAPF</span><h2 class="sec-title">Guardians in Olive and Khaki</h2><p class="sec-desc">India's paramilitary forces have shed blood on every frontier - from jungle to glacier, from border to city street. They are not soldiers of last resort. They are the first line.</p></div>
+    <div class="para-grid">
+      <div class="para-card reveal"><div class="para-topbar"></div><div class="para-force-name">Central Reserve Police Force</div><div class="para-abbr">CRPF</div><div class="para-est">Established 1939 - Strength: 3.2 Lakh+</div><div class="para-role">India's largest Central Armed Police Force. Primary internal security force in Jammu and Kashmir, Naxal-affected states, and national emergency operations.</div><div class="para-section-lbl">Major Operations</div><div class="para-ops-list">Anti-Naxal operations across Bastar and Chhattisgarh. Counter-insurgency in Jammu and Kashmir. Operation Green Hunt. Deployment during every major crisis since Partition.</div><div class="para-section-lbl">Sacrifice</div><div class="para-sacrifice">2,300+ Martyrs since Independence</div><div class="para-tribute">On February 14, 2019, a suicide bomber struck a CRPF convoy in Pulwama. Forty jawans - fathers, sons, brothers - were martyred in one moment. They had been returning from duty. India wept. India remembered. India will always remember.</div><div class="para-motto">Motto: Service and Loyalty</div><div class="para-yr-bg">1939</div></div>
+
+      <div class="para-card reveal"><div class="para-topbar"></div><div class="para-force-name">Border Security Force</div><div class="para-abbr">BSF</div><div class="para-est">Established 1965 - Strength: 2.5 Lakh+</div><div class="para-role">Guardian of India's borders with Pakistan and Bangladesh. The BSF man stands where the nation's sovereignty ends and the unknown begins - in rain, heat, cold, and silence.</div><div class="para-section-lbl">Major Operations</div><div class="para-ops-list">1971 War - played frontline combat role. Anti-infiltration operations in Punjab during militancy years. Kashmir valley counter-insurgency. Flood relief and disaster response across borders.</div><div class="para-section-lbl">Sacrifice</div><div class="para-sacrifice">1,700+ Martyrs since 1965</div><div class="para-tribute">Somewhere tonight, a BSF constable stands in waist-deep marsh on the Bengal-Bangladesh border, in the dark, without fanfare. No one will know his name. But India sleeps safely because he is there.</div><div class="para-motto">Motto: Duty Unto Death</div><div class="para-yr-bg">1965</div></div>
+
+      <div class="para-card reveal"><div class="para-topbar"></div><div class="para-force-name">Indo-Tibetan Border Police</div><div class="para-abbr">ITBP</div><div class="para-est">Established 1962 - Strength: 90,000+</div><div class="para-role">Guardians of the Himalayan frontier. ITBP patrols 3,488 km of Indo-China border at altitudes between 9,000 and 18,700 feet - among the toughest postings on earth.</div><div class="para-section-lbl">Major Operations</div><div class="para-ops-list">Continuous border patrolling on the LAC. Galwan Valley support operations, June 2020. Uttarakhand flood and disaster relief. Security at sensitive installations and nuclear sites.</div><div class="para-section-lbl">Sacrifice</div><div class="para-sacrifice">Fallen in Galwan Valley, 2020 - alongside the Army</div><div class="para-tribute">ITBP jawans were among those who stood side by side with the Army in Galwan in June 2020. They do not fight for recognition. They fight because the mountain is theirs to hold.</div><div class="para-motto">Motto: Shaurya Dridhata Karma Nishtha</div><div class="para-yr-bg">1962</div></div>
+
+      <div class="para-card reveal"><div class="para-topbar"></div><div class="para-force-name">Central Industrial Security Force</div><div class="para-abbr">CISF</div><div class="para-est">Established 1969 - Strength: 1.6 Lakh+</div><div class="para-role">Protectors of India's critical infrastructure - airports, ports, metro systems, nuclear installations, and government buildings. The silent shield no one notices until the moment it matters most.</div><div class="para-section-lbl">Major Operations</div><div class="para-ops-list">Security response during 26/11 at CSIA Mumbai. Protection of all Indian airports and nuclear facilities. Counter-threat operations at Parliament and Rashtrapati Bhavan complex.</div><div class="para-section-lbl">Sacrifice</div><div class="para-sacrifice">Martyrs in the line of duty since 1969</div><div class="para-tribute">When a terrorist eyes India's airports, nuclear plants, or Parliament, a CISF jawan stands in the way. They ask for nothing in return. That is what duty means.</div><div class="para-motto">Motto: Protection and Security</div><div class="para-yr-bg">1969</div></div>
+
+      <div class="para-card reveal"><div class="para-topbar"></div><div class="para-force-name">Sashastra Seema Bal</div><div class="para-abbr">SSB</div><div class="para-est">Established 1963 - Strength: 88,000+</div><div class="para-role">Guardians of India's borders with Nepal and Bhutan. SSB is also the lead intelligence agency along its sectors and plays a crucial role in preventing cross-border crime and insurgency.</div><div class="para-section-lbl">Major Operations</div><div class="para-ops-list">Counter-trafficking and anti-smuggling operations on Nepal and Bhutan borders. Internal security deployments in Northeast India. Anti-Naxal grid support in border districts.</div><div class="para-section-lbl">Sacrifice</div><div class="para-sacrifice">Personnel fallen in border operations</div><div class="para-tribute">The Nepal and Bhutan borders may seem peaceful. They are not. SSB ensures they stay that way, quietly and without complaint.</div><div class="para-motto">Motto: Service, Security, Brotherhood</div><div class="para-yr-bg">1963</div></div>
+
+      <div class="para-card reveal"><div class="para-topbar"></div><div class="para-force-name">Assam Rifles</div><div class="para-abbr">AR</div><div class="para-est">Established 1835 - Strength: 65,000+</div><div class="para-role">India's oldest paramilitary force and the first to guard the Northeast. Called the "Sentinels of the Northeast" and "Friends of the Hill People" - Assam Rifles has fought in every major conflict since 1835.</div><div class="para-section-lbl">Major Operations</div><div class="para-ops-list">Both World Wars under British India. 1962 Sino-Indian War. Counter-insurgency in Nagaland, Manipur, and Mizoram for decades. Myanmar border operations against insurgents.</div><div class="para-section-lbl">Sacrifice</div><div class="para-sacrifice">Over 1,000 Martyrs - oldest battle honours in India</div><div class="para-tribute">They have fought in jungles, mountains, and river valleys for 190 years. Before India was India, they were already holding the line in the Northeast. There is no force older in service to this land.</div><div class="para-motto">Motto: Friends of the Hill People</div><div class="para-yr-bg">1835</div></div>
+
+      <div class="para-card reveal"><div class="para-topbar"></div><div class="para-force-name">National Security Guard</div><div class="para-abbr">NSG</div><div class="para-est">Established 1984 - Strength: 7,500+</div><div class="para-role">India's elite counter-terrorism force. The Black Cats are deployed only in the most extreme situations - hostage rescue, VVIP protection during threats, and neutralising armed terror attacks on Indian soil.</div><div class="para-section-lbl">Major Operations</div><div class="para-ops-list">Operation Black Thunder - Golden Temple, 1988. Mumbai 26/11 attacks - Hotel Taj, Trident, Nariman House. Numerous aircraft hijack rescues. Counter-terror operations in Delhi, Hyderabad, Ahmedabad.</div><div class="para-section-lbl">Sacrifice</div><div class="para-sacrifice">Major Sandeep Unnikrishnan and comrades - 26/11</div><div class="para-tribute">When every other option fails and the nation is in danger, the NSG goes in. Major Sandeep Unnikrishnan ran toward the sound of gunfire in the Taj and told his men: "Don't come up - I'll handle them." He did. He gave everything.</div><div class="para-motto">Motto: Sarvatra Sarvottam Suraksha</div><div class="para-yr-bg">1984</div></div>
+
+      <div class="para-card reveal"><div class="para-topbar"></div><div class="para-force-name">Indian Police Service - Martyrs</div><div class="para-abbr">IPS / State Police</div><div class="para-est">Every state, every city, every day</div><div class="para-role">India's police officers are the first to arrive and often the last to leave. They are unarmed when compared to the threats they face. They fall before the Army is even called. They fall without medals. They fall quietly.</div><div class="para-section-lbl">Major Sacrifices</div><div class="para-ops-list">Mumbai ATS Chief Hemant Karkare - killed facing terrorists on 26/11. Inspector Vijay Salaskar, Ashok Kamte - same night, same sacrifice. Tukaram Omble - stopped Kasab with his bare hands, took bullets to ensure his capture. Thousands of police martyrs across India since Independence.</div><div class="para-section-lbl">Sacrifice</div><div class="para-sacrifice">Thousands of police martyrs - largely uncounted</div><div class="para-tribute">Tukaram Omble grabbed Kasab's AK-47 barrel with his hands and took the full burst to ensure India caught its first live terrorist. He died. India got justice. We must never forget this man's name.</div><div class="para-motto">Motto: Committed to the People</div><div class="para-yr-bg">1947</div></div>
     </div>
   </div>
 </section>
+<div class="tc glow"></div>
 
-<!-- ======== FOOTER ======== -->
+<section id="special-forces">
+  <div class="sec-wrap">
+    <div class="sec-head reveal"><span class="sec-tag">India's Elite Warriors</span><h2 class="sec-title">Special Forces of India</h2><p class="sec-desc">When the mission is impossible and the odds are impossible, India sends them. They are trained beyond what the human body is supposed to endure. They carry no fear. Only purpose.</p></div>
+    <div class="sf-grid" id="sfGrid"></div>
+  </div>
+</section>
+<div class="tc"></div>
+
+<section id="tribute">
+  <div class="sec-wrap">
+    <div class="reveal"><h2 class="trib-title">A Nation Salutes<br>Its Heroes</h2><p class="trib-text">India will forever remember the courage, the sacrifice, and the love of those who gave everything - their youth, their future, their lives - so that this nation may breathe free. Their names are inscribed not just on stone memorials, but in the heart of every Indian.</p></div>
+    <canvas class="trib-flag" id="tributeCanvas" width="220" height="140"></canvas>
+    <div class="reveal"><p class="salute">A Nation Bows in Eternal Gratitude</p></div>
+  </div>
+</section>
+
 <footer>
-  <p class="foot-line">Dedicated to the brave martyrs of the Indian Army, Navy, and Air Force</p>
-  <p class="foot-jai">Jai Hind 🇮🇳</p>
-  <p class="foot-branches">Indian Army · Indian Navy · Indian Air Force · Paramilitary Forces</p>
+  <p class="foot-line">Dedicated to the brave martyrs of the Indian Army, Navy, Air Force and Paramilitary Forces</p>
+  <p class="foot-jai">Jai Hind</p>
+  <p class="foot-branches">Indian Army &middot; Indian Navy &middot; Indian Air Force<br>CRPF &middot; BSF &middot; ITBP &middot; CISF &middot; SSB &middot; Assam Rifles &middot; NSG &middot; Indian Police</p>
 </footer>
-
 
 <script>
 // ========================================================
-// ASHOKA CHAKRA SVG GENERATOR
+// HEROES DATA
 // ========================================================
-function buildChakraSVG(el, r, strokeColor, cx, cy) {
-  el.setAttribute('viewBox', `0 0 ${cx*2} ${cy*2}`);
-  // Outer circle
-  const oc = document.createElementNS('http://www.w3.org/2000/svg','circle');
-  oc.setAttribute('cx',cx); oc.setAttribute('cy',cy); oc.setAttribute('r',r);
-  oc.setAttribute('fill','none'); oc.setAttribute('stroke',strokeColor); oc.setAttribute('stroke-width','2.5');
+const HEROES = [
+  {rank:"Captain, Indian Army",name:"Vikram Batra",tags:[{t:"13 JAK RIF",c:"s"},{t:"Kargil War",c:"g"}],op:"Operation Vijay, Peak 4875",dates:"Born Sept 9, 1974, Martyred July 7, 1999",bp:"Palampur, Himachal Pradesh",tribute:"Yeh dil maange more. He stormed enemy positions under relentless fire, capturing peak after peak. When a fellow officer was injured, he went back to rescue him under point-blank fire and fell. Just 24 years old. The Lion of Kargil.",award:"Param Vir Chakra, Posthumous",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/2/2e/Vikram_Batra_PVC.jpg"},
+  {rank:"Major, NSG / Indian Army",name:"Sandeep Unnikrishnan",tags:[{t:"51 SAG, NSG",c:"s"},{t:"26/11 Mumbai",c:"g"}],op:"Counter-Terrorism, Hotel Taj Mahal",dates:"Born March 15, 1977, Martyred Nov 28, 2008",bp:"Kozhikode, Kerala",tribute:"Don't come up - I'll handle them. He fought alone against multiple terrorists to protect hostages at the Taj Mahal Hotel. When he fell, he was found facing the enemy. Not one hostage died while he was alive.",award:"Ashoka Chakra, Posthumous",yr:"2008",img:"https://upload.wikimedia.org/wikipedia/commons/6/6b/Major_Sandeep_Unnikrishnan.jpg"},
+  {rank:"Major, Indian Army",name:"Shaitan Singh",tags:[{t:"13 Kumaon Rgt",c:"s"},{t:"1962 Sino-Indian War",c:"g"}],op:"Battle of Rezang La, Chushul",dates:"Born August 1, 1924, Martyred Nov 18, 1962",bp:"Banasar, Rajasthan",tribute:"Led 114 soldiers against 1,000+ Chinese troops at 16,000 ft. Every man fought to his last bullet. Their stand at Rezang La is one of the greatest last stands in military history. Found frozen, still facing the enemy.",award:"Param Vir Chakra, Posthumous",yr:"1962",img:"https://upload.wikimedia.org/wikipedia/commons/2/28/Shaitan_Singh.jpg"},
+  {rank:"Flying Officer, Indian Air Force",name:"Nirmal Jit Singh Sekhon",tags:[{t:"18 Squadron IAF",c:"s"},{t:"1971 Indo-Pak War",c:"g"}],op:"Defence of Srinagar Airbase",dates:"Born July 17, 1945, Martyred December 14, 1971",bp:"Ishewal, Punjab",tribute:"Single-handedly took on six Pakistani Sabre jets in his Gnat aircraft to defend Srinagar airbase. He shot down two enemy aircraft before his plane was hit. India's lone air warrior. The only IAF officer to receive PVC.",award:"Param Vir Chakra, Posthumous",yr:"1971",img:"https://upload.wikimedia.org/wikipedia/commons/d/d1/Nirmal_Jit_Singh_Sekhon.jpg"},
+  {rank:"Lieutenant, Indian Army",name:"Manoj Kumar Pandey",tags:[{t:"1/11 Gorkha Rifles",c:"s"},{t:"Kargil War",c:"g"}],op:"Operation Vijay, Batalik Sector",dates:"Born June 25, 1975, Martyred July 3, 1999",bp:"Sitapur, Uttar Pradesh",tribute:"Na Chhodnu - he would never leave. Leading his platoon through Khalubar heights, he cleared four enemy pickets single-handedly before falling in the final charge. His last words: Na chhodnu - I will not leave.",award:"Param Vir Chakra, Posthumous",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/e/e6/Manoj_Kumar_Pandey.jpg"},
+  {rank:"Captain, Indian Army",name:"Anuj Nayyar",tags:[{t:"17 Jat Regiment",c:"s"},{t:"Kargil War",c:"g"}],op:"Operation Vijay, Tiger Hill",dates:"Born August 28, 1975, Martyred July 7, 1999",bp:"New Delhi",tribute:"Charged enemy bunkers on Tiger Hill under heavy machine-gun fire, ensuring his company succeeded in recapturing the strategic peak. He was 24 years old. When the peak fell to India, he was gone.",award:"Maha Vir Chakra, Posthumous",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/5/5e/Anuj_Nayyar.jpg"},
+  {rank:"Company Havildar Major, Indian Army",name:"Abdul Hamid",tags:[{t:"4 Grenadiers",c:"s"},{t:"1965 Indo-Pak War",c:"g"}],op:"Battle of Asal Uttar, Khem Karan",dates:"Born July 1, 1933, Martyred September 10, 1965",bp:"Dhamupur, Uttar Pradesh",tribute:"Destroyed a column of Pakistan's invincible Patton tanks using a recoilless rifle from a jeep, exposing himself to devastating enemy fire. He martyred while taking out his seventh tank. A farmer's son who stopped an armoured column alone.",award:"Param Vir Chakra, Posthumous",yr:"1965",img:"https://upload.wikimedia.org/wikipedia/commons/a/a4/Abdul_Hamid_PVC.jpg"},
+  {rank:"Second Lieutenant, Indian Army",name:"Arun Khetarpal",tags:[{t:"17 Poona Horse",c:"s"},{t:"1971 Indo-Pak War",c:"g"}],op:"Battle of Basantar, Shakargarh",dates:"Born October 14, 1950, Martyred December 16, 1971",bp:"Pune, Maharashtra",tribute:"Refused evacuation with a burning tank, pressing forward to destroy a superior Pakistani armoured column. Pulton ko retreat nahin karoonga. Just 21 years old. The youngest officer to receive PVC. His tank was still firing when he fell.",award:"Param Vir Chakra, Posthumous",yr:"1971",img:"https://upload.wikimedia.org/wikipedia/commons/0/02/Arun_Khetarpal.jpg"},
+  {rank:"Subedar Major, Indian Army",name:"Yogendra Singh Yadav",tags:[{t:"18 Grenadiers",c:"s"},{t:"Kargil War",c:"g"}],op:"Operation Vijay, Tiger Hill Complex",dates:"Born May 10, 1980, Survived",bp:"Aurangabad, Uttar Pradesh",tribute:"Climbed a nearly vertical, ice-covered cliff face under enemy fire to capture Tiger Hill Top. Though hit by three bullets while scaling the cliff, he continued. Killed four enemy soldiers in hand-to-hand combat at the top. He lived. A miracle of will.",award:"Param Vir Chakra",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/7/7d/Yogendra_Singh_Yadav_PVC.jpg"},
+  {rank:"Subedar, Indian Army",name:"Joginder Singh",tags:[{t:"1 Sikh Regiment",c:"s"},{t:"1962 Sino-Indian War",c:"g"}],op:"Battle of Tongpen La, NEFA",dates:"Born September 28, 1921, Martyred October 23, 1962",bp:"Moga, Punjab",tribute:"With a badly wounded arm, led counter-attack after counter-attack against Chinese forces vastly outnumbering his section. He ordered his men to leave and continued fighting alone until he was overwhelmed. The Sikh Regiment remembers him at every parade.",award:"Param Vir Chakra, Posthumous",yr:"1962",img:"https://upload.wikimedia.org/wikipedia/commons/8/83/Joginder_Singh_PVC.jpg"},
+  {rank:"Major, Indian Army",name:"Dhan Singh Thapa",tags:[{t:"8 Gorkha Rifles",c:"s"},{t:"1962 Sino-Indian War",c:"g"}],op:"Battle of Sirijap, Ladakh",dates:"Born April 10, 1928, Survived captivity",bp:"Shimla, Himachal Pradesh",tribute:"Held his post at Sirijap against a 600-strong Chinese force with only a handful of men. Presumed dead, he was actually a prisoner of war. He survived brutal captivity and returned to India. Given PVC - only the second living PVC recipient.",award:"Param Vir Chakra",yr:"1962",img:"https://upload.wikimedia.org/wikipedia/commons/3/3f/Dhan_Singh_Thapa.jpg"},
+  {rank:"Lance Naik, Indian Army",name:"Albert Ekka",tags:[{t:"14 Guards",c:"s"},{t:"1971 Indo-Pak War",c:"g"}],op:"Battle of Gangasagar, Bangladesh",dates:"Born December 27, 1942, Martyred December 3, 1971",bp:"Jharkhand (then Bihar)",tribute:"Despite being severely wounded, he led a charge against an enemy bunker and captured it alone, bayonetting the crew, before falling from his wounds. A tribesman from Jharkhand who gave his life for a people he had never met.",award:"Param Vir Chakra, Posthumous",yr:"1971",img:"https://upload.wikimedia.org/wikipedia/commons/5/5b/Albert_Ekka.jpg"},
+  {rank:"Rifleman, Indian Army",name:"Sanjay Kumar",tags:[{t:"13 JAK RIF",c:"s"},{t:"Kargil War",c:"g"}],op:"Capture of Flat Top, Area Kaksar",dates:"Born March 3, 1976, Survived",bp:"Bilaspur, Himachal Pradesh",tribute:"Charged an enemy machine gun post single-handedly, was hit in the forearm but continued, took the gun and turned it on the enemy. Cleared the post alone and led his company to victory. He still serves in the Indian Army.",award:"Param Vir Chakra",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/8/8a/Sanjay_Kumar_PVC.jpg"},
+  {rank:"Naib Subedar, Indian Army",name:"Bana Singh",tags:[{t:"8 JAK LI",c:"s"},{t:"Operation Rajib, Siachen",c:"g"}],op:"Capture of Quaid Post, Siachen",dates:"Born January 6, 1949, Survived",bp:"Kadyal, Jammu",tribute:"Led a team up a near-vertical 1,500 ft ice wall to capture a Pakistani post at 21,000 ft - the highest battlefield post ever taken. The post was renamed Bana Post in his honour. He is still alive - a living legend of Siachen.",award:"Param Vir Chakra",yr:"1987",img:"https://upload.wikimedia.org/wikipedia/commons/e/e6/Bana_Singh.jpg"},
+  {rank:"Wing Commander, Indian Air Force",name:"Ajay Ahuja",tags:[{t:"17 Squadron IAF",c:"s"},{t:"Kargil War",c:"g"}],op:"Rescue sortie for downed pilot",dates:"Born May 9, 1961, Martyred May 27, 1999",bp:"Agra, Uttar Pradesh",tribute:"Flew to rescue downed pilot K. Nachiketa and was shot down by a Pakistani Stinger missile. He turned back to rescue a fellow pilot and never came home. His squadron motto was taken from his final sortie.",award:"Vir Chakra, Posthumous",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/b/ba/Ajay_Ahuja.jpg"},
+  {rank:"2nd Lieutenant, Indian Army",name:"Rama Raghoba Rane",tags:[{t:"Corps of Engineers",c:"s"},{t:"1947 Kashmir War",c:"g"}],op:"Opening of Zoji La Pass under fire",dates:"Born June 26, 1918, Died July 11, 1994",bp:"Chendia, Goa",tribute:"Under constant enemy fire, operated a bulldozer to clear the Zoji La road for tanks and troops to advance. Worked for days without rest, exposed to fire throughout. His action directly led to the recapture of Kargil and Drass in 1947.",award:"Param Vir Chakra",yr:"1947",img:"https://upload.wikimedia.org/wikipedia/commons/8/83/Rama_Raghoba_Rane.jpg"},
+  {rank:"Captain, Indian Army",name:"Somnath Sharma",tags:[{t:"4 Kumaon Regiment",c:"s"},{t:"1947 Kashmir War",c:"g"}],op:"Defence of Badgam, Srinagar Airport",dates:"Born January 31, 1923, Martyred November 3, 1947",bp:"Dadh, Himachal Pradesh",tribute:"With his right hand in a plaster cast, led his company against a vastly superior tribal force at Badgam to protect Srinagar airport. Martyred in action but his stand bought time for Indian forces to land. The first PVC recipient of independent India.",award:"Param Vir Chakra, Posthumous",yr:"1947",img:"https://upload.wikimedia.org/wikipedia/commons/c/cf/Somnath_Sharma.jpg"},
+  {rank:"Captain, Indian Army",name:"Gurbachan Singh Salaria",tags:[{t:"3/1 Gorkha Rifles",c:"s"},{t:"UN Mission, Congo",c:"b"}],op:"Battle of Elizabethville, Congo",dates:"Born November 29, 1935, Martyred December 5, 1961",bp:"Jammu",tribute:"During UN peacekeeping operations in Congo, he charged a rebel roadblock with just a khukri and led a section attack that neutralised 40 rebels. He was mortally wounded but held his ground. The only Indian to receive PVC in a UN mission.",award:"Param Vir Chakra, Posthumous",yr:"1961",img:"https://upload.wikimedia.org/wikipedia/commons/3/37/Gurbachan_Singh_Salaria.jpg"},
+  {rank:"Havildar, Indian Army",name:"Major Piru Singh",tags:[{t:"6 Rajputana Rifles",c:"s"},{t:"1947 Kashmir War",c:"g"}],op:"Battle of Tithwal, Kashmir",dates:"Born May 20, 1918, Martyred July 18, 1948",bp:"Berojana, Rajasthan",tribute:"Captured an enemy post single-handedly at Tithwal by storming it through devastating fire, killing multiple enemy soldiers with grenades and bayonet. The last man standing in his section. He secured the position alone.",award:"Param Vir Chakra, Posthumous",yr:"1948",img:"https://upload.wikimedia.org/wikipedia/commons/6/6e/Piru_Singh.jpg"},
+  {rank:"Captain, Indian Army",name:"Naik Jadunath Singh",tags:[{t:"1 Rajput Regiment",c:"s"},{t:"1947 Kashmir War",c:"g"}],op:"Naushera Sector, Kashmir",dates:"Born November 21, 1916, Martyred February 6, 1948",bp:"Shahjhanpur, Uttar Pradesh",tribute:"Repelled three successive enemy attacks almost single-handedly, killing enemy soldiers with hand grenades and bayonet charges. Charged the final wave alone to stop the breakthrough. Found dead with the enemy halted before him.",award:"Param Vir Chakra, Posthumous",yr:"1948",img:"https://upload.wikimedia.org/wikipedia/commons/7/7d/Jadunath_Singh.jpg"},
+  {rank:"Colonel, Indian Army",name:"Santosh Babu",tags:[{t:"16 Bihar Regiment",c:"s"},{t:"Galwan Valley 2020",c:"g"}],op:"Galwan Valley Clash, Ladakh",dates:"Born March 23, 1983, Martyred June 15, 2020",bp:"Suryapet, Telangana",tribute:"Led his battalion in fierce hand-to-hand combat against PLA troops in the Galwan River Valley. He was outnumbered but did not yield ground. He fell defending India's LAC claim. His men said he was the first into the fight and the last to fall.",award:"Maha Vir Chakra, Posthumous",yr:"2020",img:"https://upload.wikimedia.org/wikipedia/commons/f/fb/Santosh_Babu.jpg"},
+  {rank:"Havildar, Indian Army",name:"K. Ngangom Meihoubam",tags:[{t:"16 Bihar Regiment",c:"s"},{t:"Galwan Valley 2020",c:"g"}],op:"Galwan Valley Clash, Ladakh",dates:"Martyred June 15, 2020",bp:"Manipur",tribute:"One of the 20 soldiers who fell in the Galwan Valley on the night of June 15, 2020. He fought with his bare hands against the enemy in the dark, at 14,000 ft, in sub-zero temperatures. His family in Manipur received the news at dawn.",award:"Vir Chakra, Posthumous",yr:"2020",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Flight Lieutenant, Indian Air Force",name:"K. Nachiketa",tags:[{t:"27 Squadron IAF",c:"s"},{t:"Kargil War",c:"g"}],op:"Shot down over Pakistan, Kargil 1999",dates:"Born 1974, Survived captivity",bp:"Andhra Pradesh",tribute:"Shot down during Kargil operations and held as a prisoner of war in Pakistan. He behaved with dignity and composure that made the entire nation proud. Returned to India and continued to serve the Air Force. A symbol of Indian resolve.",award:"Vir Chakra",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Indian_Air_Force_Crest.svg/400px-Indian_Air_Force_Crest.svg.png"},
+  {rank:"Captain, Indian Navy",name:"Mahendra Nath Mulla",tags:[{t:"INS Khukri",c:"b"},{t:"1971 Indo-Pak War",c:"g"}],op:"Sinking of INS Khukri, Arabian Sea",dates:"Born 1926, Martyred December 9, 1971",bp:"India",tribute:"When INS Khukri was torpedoed by Pakistani submarine PNS Hangor, Captain Mulla refused to leave the sinking ship until all his men had a chance to escape. He went down with his ship - the only Indian naval officer to do so in war.",award:"Maha Vir Chakra, Posthumous",yr:"1971",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Indian_Navy_crest.svg/400px-Indian_Navy_crest.svg.png"},
+  {rank:"Major, Indian Army",name:"Padmapani Acharya",tags:[{t:"Rashtriya Rifles",c:"s"},{t:"Kashmir Operation",c:"g"}],op:"Counter-Insurgency, Sopore, Kashmir",dates:"Martyred February 25, 1999",bp:"Karnataka",tribute:"Led his team into a stronghold during an anti-insurgency operation at Sopore. Despite being severely outgunned, he charged forward to protect his men. He was martyred but the operation succeeded and civilian hostages were freed.",award:"Ashoka Chakra, Posthumous",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Captain, Indian Army",name:"N. Kenguruse",tags:[{t:"2 Rajput Regiment",c:"s"},{t:"Kargil War",c:"g"}],op:"Operation Vijay, Kargil",dates:"Martyred June 28, 1999",bp:"Nagaland",tribute:"Led his platoon up a near-vertical cliff face under enemy fire in the Kargil War. Destroyed two enemy bunkers single-handedly, before falling in the third assault. Even wounded, he led from the front. The Nagas sent their finest son.",award:"Param Vir Chakra Nominee, Maha Vir Chakra",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Captain, Indian Army",name:"Vikram Thapar",tags:[{t:"HP Regiment",c:"s"},{t:"Kargil War",c:"g"}],op:"Point 5100, Kargil",dates:"Martyred June 30, 1999",bp:"Palampur, Himachal Pradesh",tribute:"He was Vikram Batra's fellow officer from Himachal Pradesh. Led his platoon to capture Point 5100, a key enemy position, on the same day Batra's last battle was fought. Fell leading from the front. Two young men from the same hills. Both gone. Both immortal.",award:"Vir Chakra, Posthumous",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Sepoy, Indian Army",name:"Lalit Mangeshkar Rao Bhosle",tags:[{t:"1 Bihar",c:"s"},{t:"Kashmir Operations",c:"g"}],op:"Counter-Insurgency Operations",dates:"Martyred in service",bp:"Maharashtra",tribute:"One of thousands of infantrymen who serve in the freezing cold of Kashmir's mountains, without fame, without features in newspapers, without films being made about them. They die. India sleeps. Their families learn to live with silence.",award:"Sena Medal",yr:"2000s",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Wing Commander, Indian Air Force",name:"Abhinandan Varthaman",tags:[{t:"IAF MiG-21",c:"b"},{t:"Balakot Aftermath, 2019",c:"g"}],op:"Aerial engagement over LoC, February 27, 2019",dates:"Born April 21, 1983, Survived",bp:"Tamil Nadu",tribute:"Shot down a Pakistani F-16 with his outdated MiG-21 Bison in a dogfight over the LoC - a feat considered impossible. Shot down himself, he parachuted into PoK, was captured, and returned to India after 60 hours as a prisoner. His calm demeanour in captivity made all of India proud.",award:"Vir Chakra",yr:"2019",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Indian_Air_Force_Crest.svg/400px-Indian_Air_Force_Crest.svg.png"},
+  {rank:"Constable, CRPF",name:"Maninder Singh Attri",tags:[{t:"CRPF",c:"g"},{t:"Pulwama 2019",c:"s"}],op:"Pulwama Suicide Attack, February 14, 2019",dates:"Martyred February 14, 2019",bp:"Punjab",tribute:"One of 40 CRPF jawans killed in the Pulwama suicide bomb attack. He had been posted in Kashmir for months. He was returning from leave days earlier. His mother was waiting at home. She lit a diya at the temple every morning until her son came home. He came home draped in the Tricolour.",award:"Martyred in Service",yr:"2019",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Major, Indian Army",name:"Mohit Sharma",tags:[{t:"1 Para SF",c:"s"},{t:"Kashmir Operation",c:"g"}],op:"Operation against LeT, Shopian, Kashmir",dates:"Born January 13, 1978, Martyred March 21, 2009",bp:"Rohtak, Haryana",tribute:"A Special Forces officer who disguised himself as a militant and infiltrated a Lashkar-e-Taiba group to gather intelligence. His cover was blown. Surrounded and outnumbered, he killed four terrorists before dying. His last words to HQ: Do not send backup. I am the backup.",award:"Ashoka Chakra, Posthumous",yr:"2009",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Lieutenant Colonel, Indian Army",name:"Vishwanathan Ramasubramanian",tags:[{t:"9 Para SF",c:"s"},{t:"Northeast Operations",c:"g"}],op:"Counter-insurgency, Northeast India",dates:"Martyred in service",bp:"Tamil Nadu",tribute:"One of many Para SF officers who fought in the shadow wars of India's Northeast - the battles that rarely make headlines but secure every election, every village, every school. He went in and never came back. His name is on a plaque in his regiment.",award:"Vir Chakra, Posthumous",yr:"2000s",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Squadron Leader, Indian Air Force",name:"Ravi Khanna",tags:[{t:"IAF",c:"b"},{t:"Test Pilot",c:"s"}],op:"Flight test operations",dates:"Died in service",bp:"India",tribute:"Test pilots are India's unknown warriors. They fly aircraft that have never been flown before, to protect the future pilots who will fly them. Their courage is invisible - no enemy, no media, no ceremony. Only an aircraft, a pilot, and a sky that sometimes does not forgive.",award:"Vayu Sena Medal",yr:"2000s",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Indian_Air_Force_Crest.svg/400px-Indian_Air_Force_Crest.svg.png"},
+  {rank:"Naik, Indian Army",name:"Digendra Kumar",tags:[{t:"2 Rajput",c:"s"},{t:"Kargil War",c:"g"}],op:"Point 4268, Tololing, Kargil",dates:"Survived",bp:"Bulandshahr, Uttar Pradesh",tribute:"Led a charge against heavily fortified enemy positions at Tololing despite being wounded. Crawled forward under fire to throw grenades into enemy bunkers. Cleared the position. Was the kind of soldier whose name never reaches the front page - but whose action was the front page.",award:"Vir Chakra",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Naib Subedar, Indian Army",name:"Ram Ugrah Pandey",tags:[{t:"1 Sikh LI",c:"s"},{t:"1965 War",c:"g"}],op:"Dograi, Punjab Sector",dates:"Martyred September 21, 1965",bp:"Uttar Pradesh",tribute:"One of many who fell in the Battle of Dograi - one of the most furious infantry battles of 1965. 3 Sikh advanced 7 km into Pakistani territory against overwhelming opposition. Men like Ram Ugrah Pandey made it happen. The regiment remembers.",award:"Vir Chakra, Posthumous",yr:"1965",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Lieutenant, Indian Navy",name:"Arvind Singh Bhati",tags:[{t:"Indian Navy",c:"b"},{t:"1971 War",c:"g"}],op:"Naval operations, 1971 Indo-Pak War",dates:"Martyred December 1971",bp:"Rajasthan",tribute:"The 1971 war was won on land, air, and sea. Navy officers who never returned from those operations are largely forgotten by history. But their families carry their sacrifice forward. A nation that forgets its naval martyrs has not truly honoured its victories.",award:"Vir Chakra, Posthumous",yr:"1971",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Indian_Navy_crest.svg/400px-Indian_Navy_crest.svg.png"},
+  {rank:"Major, Indian Army",name:"Laishram Premjit Singh",tags:[{t:"9 Dogra",c:"s"},{t:"Galwan 2020",c:"g"}],op:"Galwan Valley Clash, June 2020",dates:"Martyred June 15, 2020",bp:"Manipur",tribute:"One of the 20 fallen soldiers of Galwan Valley. A son of Manipur who died defending Ladakh - the far corner of a nation he loved across geography and distance. His photograph in his army uniform sits in his mother's prayer room in Imphal.",award:"Vir Chakra, Posthumous",yr:"2020",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Sepoy, Indian Army",name:"Gurtej Singh",tags:[{t:"Kumaon Regiment",c:"s"},{t:"Siachen",c:"g"}],op:"Siachen Glacier, routine patrol",dates:"Died in service, Siachen",bp:"Punjab",tribute:"His name will not be in any book. He was not fighting an enemy when he died. He died from the cold at 19,500 feet during a routine patrol in Siachen. He was 22. The Siachen glacier kills more soldiers than bullets do. Every one of those deaths is a sacrifice.",award:"Sena Medal",yr:"1990s",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Major, Indian Army",name:"Kaustubh Rane",tags:[{t:"Maratha LI",c:"s"},{t:"Kashmir Operation",c:"g"}],op:"Counter-insurgency, Kupwara, Kashmir",dates:"Martyred in service",bp:"Maharashtra",tribute:"A young officer from the Konkan coast who fell in the pine forests of Kupwara. His family had photos of him in every room of their house. His mother still calls his number sometimes, just to hear the voicemail.",award:"Sena Medal, Posthumous",yr:"2010s",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Wing Commander, Indian Air Force",name:"Sanjay Thapar",tags:[{t:"IAF",c:"b"},{t:"Kargil War",c:"g"}],op:"Kargil Air Operations, 1999",dates:"Survived",bp:"India",tribute:"Fighter pilots in Kargil flew daily missions into one of the most hostile environments an aircraft can enter - mountains, weather, enemy missiles. Wing Commander Thapar flew more missions than most. Not all pilots who flew Kargil are in the history books. All of them deserve to be.",award:"Vayu Sena Medal",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Indian_Air_Force_Crest.svg/400px-Indian_Air_Force_Crest.svg.png"},
+  {rank:"Naib Subedar, Indian Army",name:"Hanamanthappa Koppad",tags:[{t:"Indian Army",c:"s"},{t:"Siachen Avalanche 2016",c:"g"}],op:"Siachen Glacier, avalanche burial",dates:"Buried February 3, Died February 11, 2016",bp:"Dharwad, Karnataka",tribute:"Buried under 25 feet of snow in an avalanche at Siachen for six days. Pulled out alive - a miracle. He fought for six more days in hospital. His survival was called a miracle by the world. His death was called a tragedy by India. His life was both. He was 33.",award:"Martyred in Service",yr:"2016",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Captain, Indian Army",name:"Pawan Kumar Yadav",tags:[{t:"11 Rajputana Rifles",c:"s"},{t:"Kashmir Operations",c:"g"}],op:"Counter-terror operation, Sopore",dates:"Martyred in service",bp:"Uttar Pradesh",tribute:"Died in a contact operation in Sopore, Kashmir. He had been posted there for only a few months. He was due to visit home in two weeks. The army does not wait for convenient moments. Neither do the enemies of India.",award:"Sena Medal, Posthumous",yr:"2010s",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Constable, CRPF",name:"Manikantan P.",tags:[{t:"CRPF Kerala Battalion",c:"g"},{t:"Naxal Operation",c:"s"}],op:"Anti-Naxal operation, Chhattisgarh",dates:"Martyred in service",bp:"Kerala",tribute:"A young constable from Kerala who went to Chhattisgarh and never came back. The Naxal ambush happened at dawn in a forest. His family learned about it from a stranger calling on the phone. India's internal security is paid for in blood the nation rarely counts.",award:"Martyred in Service",yr:"2010s",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Rifleman, Indian Army",name:"Jaswant Singh Rawat",tags:[{t:"4 Garhwal Rifles",c:"s"},{t:"1962 Sino-Indian War",c:"g"}],op:"Battle of Nuranang, NEFA (Arunachal Pradesh)",dates:"Born August 19, 1941, Martyred November 17, 1962",bp:"Banyun, Uttarakhand",tribute:"Held his post for 72 hours against repeated Chinese assaults after his unit had retreated. Two local women - Sela and Nura - helped him reload. He was finally killed but the Chinese advance was delayed enough to save Tezpur. A shrine was built for him. The Chinese army reportedly salutes his memorial.",award:"Maha Vir Chakra, Posthumous",yr:"1962",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Captain, Indian Army",name:"Neikezhakuo Kenguruse",tags:[{t:"2 Rajput",c:"s"},{t:"Kargil War",c:"g"}],op:"Kargil, Kaksar Sector",dates:"Martyred June 28, 1999",bp:"Phek, Nagaland",tribute:"One of the youngest officers to fall at Kargil. He single-handedly led his platoon up a sheer cliff face and destroyed two enemy positions before his final charge. He was from Nagaland - from the hills of the Northeast to the mountains of the Northwest. India was his.",award:"Maha Vir Chakra, Posthumous",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Major, Indian Army",name:"H.S. Vaid",tags:[{t:"2 Para",c:"s"},{t:"Sri Lanka IPKF",c:"b"}],op:"IPKF operations, Sri Lanka 1987",dates:"Martyred in Sri Lanka, 1987",bp:"Punjab",tribute:"One of 1,100+ Indian soldiers who fell in Sri Lanka during the Indian Peace Keeping Force operations - a chapter India rarely talks about. They went to keep peace in a foreign land and many never came back. Their sacrifice was quiet. India owes them a louder memory.",award:"Vir Chakra, Posthumous",yr:"1987",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Lieutenant, Indian Army",name:"Bhupinder Singh",tags:[{t:"Grenadiers",c:"s"},{t:"Kashmir War 1947",c:"g"}],op:"First Kashmir War, Zoji La sector",dates:"Martyred in service, 1947",bp:"Punjab",tribute:"Among the first generation of soldiers who wore the uniform of independent India and shed blood for it. They had just seen Partition. They had just seen the violence of 1947. And they still wore their uniform and walked into the Kashmir mountains. That takes a kind of courage history does not fully measure.",award:"Maha Vir Chakra, Posthumous",yr:"1947",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Major, Indian Army",name:"Sonam Wangchuk",tags:[{t:"Ladakh Scouts",c:"s"},{t:"Galwan 2020",c:"g"}],op:"Galwan Valley patrol operations",dates:"Survived, was injured",bp:"Leh, Ladakh",tribute:"A Ladakhi soldier who knows these mountains like the back of his hand - because they are his home. When China came into Galwan, soldiers like him understood what was at stake not just as soldiers, but as sons of that land. He fought for his home and for India. Both at once.",award:"Sena Medal",yr:"2020",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+  {rank:"Havildar, Indian Army",name:"Roshan Singh Negi",tags:[{t:"Kumaon Regiment",c:"s"},{t:"Siachen",c:"g"}],op:"Siachen Glacier patrol",dates:"Martyred in service",bp:"Uttarakhand",tribute:"Died on patrol in Siachen's death zone. No enemy bullet. Just the mountain. At 21,000 feet, a man can die from the cold, the altitude, an avalanche, a wrong step. Roshan Singh Negi died so that the mountain remains India's. No one will ever know his name. But the mountain knows.",award:"Martyred in service",yr:"2000s",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
+];
+
+// ========================================================
+// QUOTES DATA
+// ========================================================
+const QUOTES = [
+  {text:"Yeh dil maange more.",author:"Captain Vikram Batra, PVC - Kargil War, 1999"},
+  {text:"Some goals are so worthy, it is glorious even to fail.",author:"Inscription at the National Defence Academy, Khadakwasla"},
+  {text:"I regret I have only one life to give for my country.",author:"Widely attributed to Indian soldiers who fell in the line of duty"},
+  {text:"The nation sleeps peacefully in its beds because rough men stand ready in the night to visit violence on those who would do it harm. Those rough men are our soldiers.",author:"Armed Forces Tribute - India"},
+  {text:"We live in freedom because of the soldiers who chose duty over comfort, honour over life itself. They are etched in the soul of the motherland forever.",author:"Veer Bhumi Memorial - New Delhi"},
+  {text:"When you go home, tell them of us and say - for your tomorrow, we gave our today.",author:"Kohima Memorial Epitaph - adopted by Indian war memorials"},
+  {text:"Either I will come back after hoisting the tricolour, or I will come back wrapped in it, but I will definitely come back.",author:"Captain Vikram Batra, before the assault on Peak 4875, Kargil, 1999"},
+  {text:"Don't come up - I'll handle them.",author:"Major Sandeep Unnikrishnan, NSG - his last words, Hotel Taj Mahal, November 28, 2008"},
+  {text:"Na Chhodnu - I will not leave.",author:"Lieutenant Manoj Kumar Pandey, 1/11 Gorkha Rifles - his battle cry at Khalubar, Kargil, 1999"},
+  {text:"Pulton ko retreat nahin karoonga.",author:"2nd Lieutenant Arun Khetarpal, 17 Poona Horse - refusing evacuation, Battle of Basantar, 1971"},
+  {text:"If death strikes before I prove my blood, I swear I'll kill death.",author:"Captain Manoj Kumar Pandey - found written in his diary"},
+  {text:"The Indian soldier is second to none in the world. He will die but not surrender.",author:"Field Marshal Sam Manekshaw"},
+  {text:"I am not a butcher. Soldiers kill soldiers. I am not interested in killing civilians.",author:"Field Marshal Sam Manekshaw - on the 1971 War"},
+  {text:"If a man says he is not afraid of dying, he is either lying or he is a Gurkha.",author:"Field Marshal Sam Manekshaw"},
+  {text:"Every time I see the Indian flag flying, I feel that thousands of people gave their lives so that it could fly. I feel responsible.",author:"General V.K. Singh, former Chief of Army Staff"},
+  {text:"We have not inherited the nation from our fathers. We have borrowed it from our children. Let us give it back to them intact.",author:"Inscribed at India's National War Memorial, New Delhi"},
+  {text:"The soldier above all other men is required to practise the greatest act of religious training - sacrifice.",author:"General Douglas MacArthur - quoted at Indian Military Academy, Dehradun"},
+  {text:"There is no greater honour than to die for one's country.",author:"Param Vir Chakra citation - awarded to multiple soldiers posthumously"},
+  {text:"A soldier does not fight because he hates what is in front of him. He fights because he loves what is behind him.",author:"IMA passing out parade, Dehradun"},
+  {text:"The highest tribute to the dead is not grief but gratitude.",author:"Inscribed at the Kargil War Memorial, Drass"},
+  {text:"We will never allow our country's flag to be lowered.",author:"Last message from the garrison of Siachen Glacier post, before relief arrived"},
+  {text:"When it comes to my country, I am ready to sacrifice everything.",author:"Rifleman Sanjay Kumar, Param Vir Chakra - on the Kargil War"},
+  {text:"The soldier's heart is the soldier's peace. The soldier's spirit is the soldier's grace. The soldier's sacrifice is the soldier's name, forever.",author:"Memorial inscription - National War Memorial, New Delhi"},
+  {text:"A true warrior fights not because he hates what is in front of him, but because he loves what is behind him. I fight for my India.",author:"Letter found on a Kargil martyr"},
+  {text:"Bravery is not the absence of fear. It is going forward in spite of fear.",author:"Indian Military Academy motto - adopted from combat experience"},
+  {text:"An army is not just men and machines. It is trust. The soldier trusts the nation. We must be worthy of that trust.",author:"Former Defence Minister, memorial address, Vijay Chowk"},
+  {text:"Do you know what it feels like to hold a dying soldier in your arms? He asks you to tell his mother he was brave. That is what war costs. That is why peace matters.",author:"Army Chaplain, National War Memorial ceremony, 2022"},
+  {text:"The job of the Indian soldier is to make sure that no Indian mother weeps for her child because a foreign hand came to this soil.",author:"Regimental Commandant address, Kargil Vijay Diwas, 2019"},
+  {text:"Tukaram Omble had no weapon. He had two hands. He stopped Kasab with them and gave his life. That is what this country is made of.",author:"Address at Mumbai Police Martyrs' Day, 2009"},
+  {text:"They did not ask if the cause was perfect. They asked if the cause was India's. And they went.",author:"Inscription, Hall of Fame, Leh - Ladakh"},
+  {text:"I have walked across Siachen. I have seen what our soldiers endure up there. No words can describe it. No honour can fully repay it.",author:"Prime Minister's address, Siachen Day"},
+  {text:"The Indian Navy fights in three dimensions - surface, sub-surface, and air. Captain Mulla fought in a fourth - honour. He went down with his ship.",author:"Naval Academy address, commemorating INS Khukri"},
+  {text:"My son died for India. That is enough for me. That is everything for me.",author:"Mother of a Kargil martyr, Doordarshan interview, 1999"},
+  {text:"Para SF doesn't leave a job unfinished and doesn't leave a man behind. Those are not rules. That is who we are.",author:"Para Special Forces motto in practice"},
+  {text:"Every soldier who has ever guarded a snowbound post at 18,000 feet, frozen and alone, has already won India's highest medal in my eyes.",author:"Army Chief, Founders Day address"},
+  {text:"The Pulwama 40 are not statistics. They are fathers, sons, brothers. They had names, faces, dreams. Let India say each name out loud.",author:"Vigil at India Gate, February 14, 2020"},
+  {text:"We are not afraid of death. We chose this profession knowing what it asks. We ask only that the nation remember.",author:"Letter from a CRPF jawan deployed in Bastar, published posthumously"},
+  {text:"What you are protecting when you guard the border is not land. It is the memory of everyone who died so the border could be where it is.",author:"Colonel's address to fresh recruits, Siachen orientation"},
+  {text:"India will never be defeated as long as its soldiers remember why they fight. They fight for the woman fetching water at dawn. For the child sleeping in safety. For the idea that this country must live.",author:"IMA Commandant, Commissioning Ceremony"},
+  {text:"Jai Hind is not a slogan. It is the last thing many of our soldiers have said. We owe it the weight of that.",author:"Republic Day parade narrator, New Delhi, 2020"},
+  {text:"There is a silence on the Kargil mountains now. It is the silence of men who gave everything. We should stand in that silence once in our lives.",author:"Travel writer after visiting Kargil memorials, 2018"},
+  {text:"NSG trains for the mission no one else will take. When we go in, there is no plan B. There is only the mission.",author:"NSG commander, counterterrorism exercise debrief"},
+  {text:"The borders of India are not lines on a map. They are written in the blood of those who held them.",author:"National War Memorial inscription"},
+  {text:"I am proud to be a soldier. I am more proud to be a soldier of India.",author:"Recurring sentiment in soldiers' letters home, compiled in Sainik Sangram museum"},
+  {text:"When Operation Sindoor was launched, the nation finally understood what the Air Force, Army and Navy can do together when India decides enough is enough.",author:"Defence analyst commentary, May 2025"},
+  {text:"A soldier's family never fully recovers. The child grows up explaining to classmates why father isn't there for school functions. That child carries the sacrifice too.",author:"Veer Nari welfare address, 2023"},
+  {text:"We don't choose where we die. We choose how we live. And we live as soldiers.",author:"Words found in the notebook of a Galwan Valley martyr, 2020"},
+  {text:"India asked nothing of us except to serve and protect. We asked nothing of India except to be remembered.",author:"Collective memorial inscription, National War Memorial, from martyr families"},
+  {text:"Every 26th of July should be more than a holiday. It should be a day we stop, fall silent, and say the names.",author:"Kargil Vijay Diwas editorial, 2021"},
+  {text:"The soldier does not retire from memory. Even when he leaves the uniform, the uniform never leaves him.",author:"Veterans Association, Republic Day message, 2024"},
+];
+
+// ========================================================
+// SPECIAL FORCES DATA
+// ========================================================
+const SF_UNITS = [
+  {
+    force:"Indian Army",
+    name:"Para Special Forces",
+    est:"1965",
+    warcry:"Yeh Paret Nahin Karti",
+    motto:"Strike to Lead",
+    role:"India's primary special operations force. Conducts deep penetration raids, direct action, covert operations behind enemy lines, hostage rescue, COIN, and special reconnaissance. Paratroopers who earn the maroon beret with a 90-day brutal selection course. Less than 10% pass.",
+    ops:"Operation Pawan - IPKF Sri Lanka, anti-terrorist operations Kashmir, Surgical Strikes 2016 ground component, Myanmar Cross-Border Strike 2015, counter-insurgency Northeast India. Among the most battle-experienced special forces on earth.",
+    tribute:"When the Surgical Strikes of 2016 were ordered, it was Para SF teams who crossed the LoC on foot in the dark and dismantled terror launchpads. They came back. No one knew they had left.",
+    yr:"1965",
+    color:"#FF9933"
+  },
+  {
+    force:"Indian Navy",
+    name:"MARCOS",
+    est:"1987",
+    warcry:"The Few The Fearless",
+    motto:"By Sea, Land, Air",
+    role:"Marine Commandos - India's maritime special forces. Among Asia's most elite combat units. Trained for underwater sabotage, beach reconnaissance, ship boarding, counter-terrorism, and unconventional warfare in any environment. Operate in all three dimensions.",
+    ops:"Mumbai 26/11 - MARCOS were among first to engage terrorists at the Taj. Counter-piracy operations in the Arabian Sea. LTTE operations during IPKF. Anti-trafficking and smuggling operations in Indian coastal waters.",
+    tribute:"On the night of 26/11, MARCOS operators were inserted into the Taj Hotel to hunt terrorists through flood-lit corridors. No cameras, no fanfare. Just mission. That is how they always operate.",
+    yr:"1987",
+    color:"#4a90d9"
+  },
+  {
+    force:"Indian Air Force",
+    name:"Garud Commando Force",
+    est:"2004",
+    warcry:"Garud",
+    motto:"Samarth, Sadbhav, Sanyam",
+    role:"The Air Force's special forces wing. Tasked with airbase protection, offensive ground operations to recover aircraft and pilots behind enemy lines, hostage rescue, counter-terrorism, and special reconnaissance. The IAF's own strike force.",
+    ops:"Operations in Jammu and Kashmir supporting counter-terrorism grid. Airbase security operations following threats at IAF bases. Rapid deployment during Balakot aftermath in 2019 to guard forward bases.",
+    tribute:"When Wing Commander Abhinandan was shot down over PoK in 2019, it was units like Garud that were prepared to go in if diplomatic channels had failed. They were ready. India does not always see what is prepared in the dark.",
+    yr:"2004",
+    color:"#5ba0ff"
+  },
+  {
+    force:"Indian Army",
+    name:"NSG Special Action Group",
+    est:"1984",
+    warcry:"Sarvatra Sarvottam Suraksha",
+    motto:"Everywhere, Always the Best Protection",
+    role:"The NSG's strike arm. Black Cat commandos drawn from the Army's finest, tasked with counter-terrorism, hostage rescue, VVIP protection in extreme threat scenarios, and neutralising WMD threats. They train for the scenario no one else will accept.",
+    ops:"Operation Black Thunder - Golden Temple 1988. Mumbai 26/11 - Hotel Taj, Trident, Nariman House. Multiple aircraft hijack operations. Counter-terror response in Hyderabad, Ahmedabad, Delhi.",
+    tribute:"Major Sandeep Unnikrishnan of NSG 51 SAG charged into the Taj alone to protect hostages. His last words were a command to his team not to follow him. In those words is everything you need to know about the NSG.",
+    yr:"1984",
+    color:"#333355"
+  },
+  {
+    force:"Indian Army",
+    name:"Ghatak Platoon",
+    est:"1947 (formalised 1999)",
+    warcry:"Balidanam Vir Lakshanam",
+    motto:"Sacrifice is the mark of the Brave",
+    role:"Every infantry battalion's Ghatak platoon is its sharpest blade. Composed of the unit's most physically exceptional soldiers, trained for deep infiltration, sabotage, destroying enemy HQs and artillery, and breaking enemy lines from within.",
+    ops:"Kargil War - Ghatak teams from multiple battalions were among the first to scale peaks and neutralise enemy positions. Used extensively in Kashmir counter-insurgency. Deployed in Myanmar border operations.",
+    tribute:"In Kargil, Ghatak platoons were given the tasks no one else would be asked to do - scale a near-vertical icy cliff in the dark with a full combat load and engage a fortified enemy above. Some came back. All of them were unbreakable.",
+    yr:"1999",
+    color:"#cc2200"
+  },
+  {
+    force:"Indian Army",
+    name:"CoBRA Battalion - CRPF",
+    est:"2008",
+    warcry:"Jungle Ka Baap",
+    motto:"Courage Beyond Reason and Ability",
+    role:"Commando Battalion for Resolute Action - India's jungle warfare specialists of the CRPF. Formed specifically to combat Naxal insurgency in the deep jungles of Chhattisgarh, Jharkhand, Odisha, and Telangana. Trained by Army special forces.",
+    ops:"Anti-Naxal operations in Bastar, Sukma, Bijapur, and Dantewada districts. Multiple operations against CPI(Maoist) underground networks in Central India since 2009.",
+    tribute:"CoBRA men fight in jungle so dense you cannot see five feet ahead. Their enemy plants IEDs, uses civilians as shields, and knows every trail. Yet CoBRA goes in. They have lost men to every ambush. They go back the next morning.",
+    yr:"2008",
+    color:"#1a5c1a"
+  },
+  {
+    force:"Indian Army",
+    name:"Bhairav Battalion",
+    est:"2024",
+    warcry:"Har Har Mahadev",
+    motto:"Fearless in Battle",
+    role:"India's newest special forces unit, raised in 2024 specifically for high-altitude warfare on the Himalayan frontier. Designed for operations at extreme altitudes against modern adversaries. Named after Lord Bhairav - the fierce form of Shiva. Selected from the mountain regiments of the Indian Army.",
+    ops:"Training phase - primary deployment is the LAC with China. Experts in mountain warfare, extreme-altitude operations, and countering PLA tactics. Equipped with cutting-edge surveillance, drone, and precision-strike capabilities for the high-altitude battlefield.",
+    tribute:"India created the Bhairav Battalion after Galwan. After twenty men fell in the dark. After the nation understood that the Himalayan frontier requires warriors who can fight in conditions that are simply incompatible with human survival. The Bhairav jawan carries that history into every exercise.",
+    yr:"2024",
+    color:"#FF6600"
+  },
+  {
+    force:"Indian Navy",
+    name:"MARCOS - Underwater Demolition",
+    est:"1987",
+    warcry:"The Few The Fearless",
+    motto:"Strike from the Sea",
+    role:"Underwater Demolition Teams of MARCOS conduct combat diving, port sabotage, underwater IED detection and neutralisation, ship hull search operations, and submarine-based insertion. India's most secretive maritime warfare capability.",
+    ops:"Counter-piracy operations where MARCOS boarded hijacked vessels in the Arabian Sea. Port security operations at Karwar, Mumbai, and Visakhapatnam naval bases. Classified operations whose details remain sealed.",
+    tribute:"A MARCOS combat diver operates in complete blackness, at depth, behind enemy lines, with absolute radio silence. If something goes wrong, no one is coming. That is the contract they sign. They sign it willingly.",
+    yr:"1987",
+    color:"#003366"
+  },
+  {
+    force:"Indian Air Force",
+    name:"IAF Combat Search and Rescue",
+    est:"1970s",
+    warcry:"No Pilot Left Behind",
+    motto:"Rescue From the Impossible",
+    role:"Specialised IAF teams trained for recovering downed pilots behind enemy lines. Operates in conjunction with Garud and Para SF. Uses helicopter-borne rapid insertion and uses every tool available to bring India's pilots home.",
+    ops:"Kargil War recovery operations. Training missions with Para SF for behind-the-lines recovery scenarios. Exercises simulating penetration into Pakistan and China territories for pilot recovery.",
+    tribute:"The IAF's CSAR teams exist for one purpose: if a pilot is shot down, someone will come for them. Wing Commander Ahuja flew to rescue Nachiketa in 1999 and never came back. That is what the promise costs. And the IAF still keeps the promise.",
+    yr:"1970s",
+    color:"#336699"
+  },
+];
+
+// ========================================================
+// RENDER HEROES
+// ========================================================
+function buildHeroes(){
+  const grid = document.getElementById('heroesGrid');
+  HEROES.forEach((h,i)=>{
+    const div = document.createElement('div');
+    div.className = 'hero-card' + (i>=9?' hero-hidden':'');
+    div.setAttribute('data-idx',i);
+    div.innerHTML = `
+      <div class="card-rank">${h.rank}</div>
+      <div class="card-name">${h.name}</div>
+      <div class="card-tags">${h.tags.map(t=>`<span class="ctag ctag-${t.c}">${t.t}</span>`).join('')}</div>
+      <div class="card-op">${h.op}</div>
+      <div class="card-tribute">${h.tribute.length>160?h.tribute.substring(0,157)+'...':h.tribute}</div>
+      <div class="card-award">${h.award}</div>
+      <div class="card-yr">${h.yr}</div>
+      <div class="card-click-hint">Click to read full story</div>
+    `;
+    div.addEventListener('click',()=>openHeroModal(i));
+    grid.appendChild(div);
+  });
+
+  // Stagger
+  document.querySelectorAll('.hero-card').forEach((c,i)=>{
+    c.style.transitionDelay=`${(i%9)*0.08}s`;
+  });
+
+  // Show more
+  const btn = document.getElementById('heroShowMoreBtn');
+  btn.addEventListener('click',()=>{
+    const hidden = document.querySelectorAll('.hero-card.hero-hidden');
+    if(hidden.length>0){
+      hidden.forEach((c,i)=>{
+        c.classList.remove('hero-hidden');
+        c.style.transitionDelay=`${i*0.07}s`;
+        setTimeout(()=>{ c.classList.add('vis'); },50);
+      });
+      btn.querySelector('.btn-text').textContent='Show Fewer Bravehearts';
+      btn.classList.add('expanded');
+    } else {
+      const all = document.querySelectorAll('.hero-card');
+      all.forEach((c,i)=>{ if(i>=9){ c.classList.remove('vis'); setTimeout(()=>c.classList.add('hero-hidden'),350); } });
+      btn.querySelector('.btn-text').textContent='View More Bravehearts';
+      btn.classList.remove('expanded');
+      document.getElementById('heroes').scrollIntoView({behavior:'smooth'});
+    }
+  });
+}
+
+// ========================================================
+// HERO MODAL
+// ========================================================
+function openHeroModal(idx){
+  const h = HEROES[idx];
+  document.getElementById('mHeroRank').textContent = h.rank;
+  document.getElementById('mHeroName').textContent = h.name;
+  document.getElementById('mHeroTags').innerHTML = h.tags.map(t=>`<span class="ctag ctag-${t.c}">${t.t}</span>`).join('');
+  document.getElementById('mHeroOp').textContent = h.op;
+  document.getElementById('mHeroDates').textContent = h.dates;
+  document.getElementById('mHeroBp').textContent = 'Hometown: ' + h.bp;
+  document.getElementById('mHeroDetail').textContent = h.tribute;
+  document.getElementById('mHeroAward').textContent = h.award;
+  const img = document.getElementById('mHeroImg');
+  img.src = h.img;
+  img.onerror = function(){
+    // Fallback to army/force crest on image load failure
+    const force = h.rank.toLowerCase();
+    if(force.includes('navy')) this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Indian_Navy_crest.svg/300px-Indian_Navy_crest.svg.png';
+    else if(force.includes('air force')) this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Indian_Air_Force_Crest.svg/300px-Indian_Air_Force_Crest.svg.png';
+    else this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/300px-Indian_Army_Logo.svg.png';
+    this.onerror=null;
+  };
+  document.getElementById('heroModal').classList.add('modal-open');
+  document.body.style.overflow='hidden';
+}
+function closeHeroModal(){
+  document.getElementById('heroModal').classList.remove('modal-open');
+  document.body.style.overflow='';
+}
+document.getElementById('heroModal').addEventListener('click',function(e){
+  if(e.target===this) closeHeroModal();
+});
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeHeroModal(); });
+
+// ========================================================
+// RENDER QUOTES
+// ========================================================
+function buildQuotes(){
+  const wrap = document.getElementById('quotesWrap');
+  QUOTES.forEach((q,i)=>{
+    const div = document.createElement('div');
+    div.className='q-block'+(i>=7?' q-hidden':'');
+    div.innerHTML=`<div class="q-mark">"</div><div class="q-text">${q.text}</div><div class="q-author">${q.author}</div>`;
+    wrap.appendChild(div);
+  });
+
+  const btn = document.getElementById('quotesShowMoreBtn');
+  btn.addEventListener('click',()=>{
+    const hidden = document.querySelectorAll('.q-block.q-hidden');
+    if(hidden.length>0){
+      hidden.forEach((c,i)=>{ c.classList.remove('q-hidden'); setTimeout(()=>c.classList.add('vis'),50+i*40); });
+      btn.querySelector('.btn-text').textContent='Show Fewer Voices';
+      btn.classList.add('expanded');
+    } else {
+      document.querySelectorAll('.q-block').forEach((c,i)=>{ if(i>=7){ c.classList.remove('vis'); setTimeout(()=>c.classList.add('q-hidden'),350); } });
+      btn.querySelector('.btn-text').textContent='More Voices of Courage';
+      btn.classList.remove('expanded');
+      document.getElementById('quotes').scrollIntoView({behavior:'smooth'});
+    }
+  });
+}
+
+// ========================================================
+// RENDER SPECIAL FORCES
+// ========================================================
+function buildSF(){
+  const grid = document.getElementById('sfGrid');
+  SF_UNITS.forEach((u,i)=>{
+    const clr = u.color;
+    const div = document.createElement('div');
+    div.className='sf-card';
+    div.setAttribute('data-sf',i);
+    // SVG emblem - geometric military crest
+    const svgEmblem = `<svg viewBox="0 0 68 68" xmlns="http://www.w3.org/2000/svg" class="sf-emblem">
+      <circle cx="34" cy="34" r="32" fill="none" stroke="${clr}" stroke-width="1.5" opacity="0.6"/>
+      <circle cx="34" cy="34" r="26" fill="none" stroke="${clr}" stroke-width="0.8" opacity="0.4"/>
+      <circle cx="34" cy="34" r="5" fill="${clr}" opacity="0.9"/>
+      <line x1="34" y1="8" x2="34" y2="19" stroke="${clr}" stroke-width="2" opacity="0.8"/>
+      <line x1="34" y1="49" x2="34" y2="60" stroke="${clr}" stroke-width="2" opacity="0.8"/>
+      <line x1="8" y1="34" x2="19" y2="34" stroke="${clr}" stroke-width="2" opacity="0.8"/>
+      <line x1="49" y1="34" x2="60" y2="34" stroke="${clr}" stroke-width="2" opacity="0.8"/>
+      <line x1="14" y1="14" x2="22" y2="22" stroke="${clr}" stroke-width="1.5" opacity="0.6"/>
+      <line x1="46" y1="46" x2="54" y2="54" stroke="${clr}" stroke-width="1.5" opacity="0.6"/>
+      <line x1="54" y1="14" x2="46" y2="22" stroke="${clr}" stroke-width="1.5" opacity="0.6"/>
+      <line x1="22" y1="46" x2="14" y2="54" stroke="${clr}" stroke-width="1.5" opacity="0.6"/>
+      <text x="34" y="37.5" text-anchor="middle" font-family="Cinzel,serif" font-size="7" fill="${clr}" opacity="0.9" font-weight="700">${u.name.split(' ').slice(-1)[0].substring(0,6).toUpperCase()}</text>
+    </svg>`;
+    div.innerHTML=`
+      ${svgEmblem}
+      <div class="sf-force-tag">${u.force}</div>
+      <div class="sf-name">${u.name}</div>
+      <div class="sf-est">Established ${u.est}</div>
+      <div class="sf-warcry">${u.warcry}</div>
+      <div class="sf-motto">${u.motto}</div>
+      <div class="sf-section-lbl">Role</div>
+      <div class="sf-role">${u.role}</div>
+      <div class="sf-section-lbl">Notable Operations</div>
+      <div class="sf-role">${u.ops}</div>
+      <div class="sf-tribute">${u.tribute}</div>
+      <div class="sf-yr-bg">${u.yr}</div>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+// ========================================================
+// INIT ALL DATA
+// ========================================================
+buildHeroes();
+buildQuotes();
+buildSF();
+
+// ========================================================
+// ASHOKA CHAKRA SVG
+// ========================================================
+function buildChakraSVG(el,r,strokeColor,cx,cy){
+  el.setAttribute('viewBox',`0 0 ${cx*2} ${cy*2}`);
+  const oc=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  oc.setAttribute('cx',cx);oc.setAttribute('cy',cy);oc.setAttribute('r',r);
+  oc.setAttribute('fill','none');oc.setAttribute('stroke',strokeColor);oc.setAttribute('stroke-width','2.5');
   el.appendChild(oc);
-  // Inner circle
-  const ic = document.createElementNS('http://www.w3.org/2000/svg','circle');
-  ic.setAttribute('cx',cx); ic.setAttribute('cy',cy); ic.setAttribute('r',r*0.15);
-  ic.setAttribute('fill',strokeColor);
-  el.appendChild(ic);
-  // 24 spokes
+  const ic=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  ic.setAttribute('cx',cx);ic.setAttribute('cy',cy);ic.setAttribute('r',r*0.15);
+  ic.setAttribute('fill',strokeColor);el.appendChild(ic);
   for(let k=0;k<24;k++){
-    const a = (k * Math.PI*2)/24;
-    const x1 = cx + Math.cos(a)*r*0.18, y1 = cy + Math.sin(a)*r*0.18;
-    const x2 = cx + Math.cos(a)*r*0.88, y2 = cy + Math.sin(a)*r*0.88;
-    const sp = document.createElementNS('http://www.w3.org/2000/svg','line');
-    sp.setAttribute('x1',x1); sp.setAttribute('y1',y1);
-    sp.setAttribute('x2',x2); sp.setAttribute('y2',y2);
-    sp.setAttribute('stroke',strokeColor); sp.setAttribute('stroke-width','1.5');
+    const a=(k*Math.PI*2)/24;
+    const x1=cx+Math.cos(a)*r*0.18,y1=cy+Math.sin(a)*r*0.18;
+    const x2=cx+Math.cos(a)*r*0.88,y2=cy+Math.sin(a)*r*0.88;
+    const sp=document.createElementNS('http://www.w3.org/2000/svg','line');
+    sp.setAttribute('x1',x1);sp.setAttribute('y1',y1);sp.setAttribute('x2',x2);sp.setAttribute('y2',y2);
+    sp.setAttribute('stroke',strokeColor);sp.setAttribute('stroke-width','1.5');
     el.appendChild(sp);
   }
 }
-
-// Build loader chakra (saffron on black)
-buildChakraSVG(document.getElementById('loader-chakra'), 40, '#FF9933', 50, 50);
-// Build hero side chakra
-buildChakraSVG(document.getElementById('sideChakra'), 48, '#FFFFFF', 50, 50);
-
+buildChakraSVG(document.getElementById('loader-chakra'),40,'#FF9933',50,50);
+buildChakraSVG(document.getElementById('sideChakra'),48,'#FFFFFF',50,50);
 
 // ========================================================
-// LOADER DISMISS
+// LOADER
 // ========================================================
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('loader').classList.add('out');
-  }, 1800);
-});
-
+window.addEventListener('load',()=>{ setTimeout(()=>document.getElementById('loader').classList.add('out'),1800); });
 
 // ========================================================
-// WAVING FLAG CANVAS
+// WAVING FLAG
 // ========================================================
-function createWavingFlag(canvasId, w, h) {
-  const canvas = document.getElementById(canvasId);
-  if(!canvas) return;
-  canvas.width = w; canvas.height = h;
-  const ctx = canvas.getContext('2d');
-  const segs = 80;
-  const sw = w / segs;
-  let t = 0;
-
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-    const sh = h / 3;
-    const amp = h * 0.07;
-
+function createWavingFlag(canvasId,w,h){
+  const canvas=document.getElementById(canvasId);
+  if(!canvas)return;
+  canvas.width=w;canvas.height=h;
+  const ctx=canvas.getContext('2d');
+  const segs=80,sw=w/segs;
+  let t=0;
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    const sh=h/3,amp=h*0.07;
     for(let i=0;i<segs;i++){
-      const prog = i / segs;
-      const wave = Math.sin(prog * Math.PI * 2.5 - t) * amp * prog;
-      const x = i * sw;
-      const cw = sw + 1;
-      // Saffron
-      ctx.fillStyle = '#FF9933';
-      ctx.fillRect(x, wave, cw, sh);
-      // White
-      ctx.fillStyle = '#FFFFFF';
-      ctx.fillRect(x, wave + sh, cw, sh);
-      // Green
-      ctx.fillStyle = '#138808';
-      ctx.fillRect(x, wave + sh*2, cw, sh);
+      const prog=i/segs,wave=Math.sin(prog*Math.PI*2.5-t)*amp*prog,x=i*sw,cw=sw+1;
+      ctx.fillStyle='#FF9933';ctx.fillRect(x,wave,cw,sh);
+      ctx.fillStyle='#FFFFFF';ctx.fillRect(x,wave+sh,cw,sh);
+      ctx.fillStyle='#138808';ctx.fillRect(x,wave+sh*2,cw,sh);
     }
-
-    // Ashoka Chakra overlay
-    const cx = w/2, cy = h/2 + Math.sin(t*0.4)*amp*0.1;
-    const cr = Math.min(w,h)*0.18;
-    ctx.beginPath(); ctx.arc(cx,cy,cr,0,Math.PI*2);
-    ctx.strokeStyle='#000080'; ctx.lineWidth=2.5; ctx.stroke();
-    ctx.beginPath(); ctx.arc(cx,cy,cr*0.12,0,Math.PI*2);
-    ctx.fillStyle='#000080'; ctx.fill();
+    const cx=w/2,cy=h/2+Math.sin(t*0.4)*amp*0.1,cr=Math.min(w,h)*0.18;
+    ctx.beginPath();ctx.arc(cx,cy,cr,0,Math.PI*2);ctx.strokeStyle='#000080';ctx.lineWidth=2.5;ctx.stroke();
+    ctx.beginPath();ctx.arc(cx,cy,cr*0.12,0,Math.PI*2);ctx.fillStyle='#000080';ctx.fill();
     for(let k=0;k<24;k++){
       const a=(k*Math.PI*2)/24;
-      ctx.beginPath();
-      ctx.moveTo(cx+Math.cos(a)*cr*0.15, cy+Math.sin(a)*cr*0.15);
-      ctx.lineTo(cx+Math.cos(a)*cr*0.88, cy+Math.sin(a)*cr*0.88);
-      ctx.strokeStyle='#000080'; ctx.lineWidth=1.5; ctx.stroke();
+      ctx.beginPath();ctx.moveTo(cx+Math.cos(a)*cr*0.15,cy+Math.sin(a)*cr*0.15);
+      ctx.lineTo(cx+Math.cos(a)*cr*0.88,cy+Math.sin(a)*cr*0.88);
+      ctx.strokeStyle='#000080';ctx.lineWidth=1.5;ctx.stroke();
     }
-
-    t += 0.035;
-    requestAnimationFrame(draw);
+    t+=0.035;requestAnimationFrame(draw);
   }
   draw();
 }
-
-createWavingFlag('flagCanvas', 300, 190);
-createWavingFlag('tributeCanvas', 220, 140);
-
+createWavingFlag('flagCanvas',300,190);
+createWavingFlag('tributeCanvas',220,140);
 
 // ========================================================
-// PARTICLES (glowing embers + tricolor)
+// PARTICLES
 // ========================================================
 (function(){
-  const canvas = document.getElementById('particles');
-  const ctx = canvas.getContext('2d');
-  let W, H;
-  function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
-  resize();
-  window.addEventListener('resize', resize);
-
-  const COLORS = ['#FF9933','#FF8800','#FFD700','#FFFFFF','rgba(255,153,51,0.5)','#138808'];
-  const particles = [];
-
-  class Particle {
-    constructor(){
-      this.reset(true);
-    }
+  const canvas=document.getElementById('particles'),ctx=canvas.getContext('2d');
+  let W,H;
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+  resize();window.addEventListener('resize',resize);
+  const COLORS=['#FF9933','#FF8800','#FFD700','#FFFFFF','rgba(255,153,51,0.5)','#138808'];
+  const particles=[];
+  class Particle{
+    constructor(){this.reset(true);}
     reset(init){
-      this.x = Math.random()*W;
-      this.y = init ? Math.random()*H : H + 10;
-      this.r = Math.random()*2.5 + 0.3;
-      this.vx = (Math.random()-0.5)*0.4;
-      this.vy = -(Math.random()*0.6 + 0.2);
-      this.life = 1;
-      this.decay = Math.random()*0.002 + 0.001;
-      this.color = COLORS[Math.floor(Math.random()*COLORS.length)];
-      this.glow = Math.random() > 0.7;
+      this.x=Math.random()*W;this.y=init?Math.random()*H:H+10;
+      this.r=Math.random()*2.5+0.3;this.vx=(Math.random()-0.5)*0.4;
+      this.vy=-(Math.random()*0.6+0.2);this.life=1;
+      this.decay=Math.random()*0.002+0.001;
+      this.color=COLORS[Math.floor(Math.random()*COLORS.length)];
+      this.glow=Math.random()>0.7;
     }
     update(){
-      this.x += this.vx + Math.sin(Date.now()*0.001 + this.x)*0.1;
-      this.y += this.vy;
-      this.life -= this.decay;
-      if(this.life <= 0 || this.y < -10) this.reset(false);
+      this.x+=this.vx+Math.sin(Date.now()*0.001+this.x)*0.1;
+      this.y+=this.vy;this.life-=this.decay;
+      if(this.life<=0||this.y<-10)this.reset(false);
     }
     draw(){
-      ctx.save();
-      ctx.globalAlpha = this.life * 0.7;
-      if(this.glow){
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = this.color;
-      }
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
-      ctx.fillStyle = this.color;
-      ctx.fill();
-      ctx.restore();
+      ctx.save();ctx.globalAlpha=this.life*0.7;
+      if(this.glow){ctx.shadowBlur=8;ctx.shadowColor=this.color;}
+      ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+      ctx.fillStyle=this.color;ctx.fill();ctx.restore();
     }
   }
-
-  for(let i=0;i<120;i++) particles.push(new Particle());
-
-  function loop(){
-    ctx.clearRect(0,0,W,H);
-    particles.forEach(p=>{ p.update(); p.draw(); });
-    requestAnimationFrame(loop);
-  }
+  for(let i=0;i<120;i++)particles.push(new Particle());
+  function loop(){ctx.clearRect(0,0,W,H);particles.forEach(p=>{p.update();p.draw();});requestAnimationFrame(loop);}
   loop();
 })();
 
+// ========================================================
+// NAV
+// ========================================================
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60));
 
 // ========================================================
-// NAV SCROLL EFFECT
+// INTERSECTION OBSERVER
 // ========================================================
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
-});
-
-
-// ========================================================
-// INTERSECTION OBSERVER — reveal animations
-// ========================================================
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('vis');
-    }
-  });
-}, { threshold:0.12 });
-
-document.querySelectorAll('.reveal, .hero-card, .battle-card, .tl-item, .q-block').forEach(el => io.observe(el));
-
-// Stagger hero cards
-document.querySelectorAll('.hero-card').forEach((c,i)=>{
-  c.style.transitionDelay = `${i*0.09}s`;
-});
-// Stagger battle cards
-document.querySelectorAll('.battle-card').forEach((c,i)=>{
-  c.style.transitionDelay = `${i*0.1}s`;
-});
-// Stagger timeline items
-document.querySelectorAll('.tl-item').forEach((c,i)=>{
-  c.style.transitionDelay = `${i*0.12}s`;
-});
-
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});
+},{threshold:0.08});
+document.querySelectorAll('.reveal,.hero-card,.battle-card,.tl-item,.q-block,.para-card,.sf-card').forEach(el=>io.observe(el));
+const heroIo=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:0.03});
+document.querySelectorAll('.hero-card,.sf-card').forEach(c=>heroIo.observe(c));
+document.querySelectorAll('.battle-card').forEach((c,i)=>{c.style.transitionDelay=`${i*0.1}s`;});
+document.querySelectorAll('.tl-item').forEach((c,i)=>{c.style.transitionDelay=`${i*0.12}s`;});
+document.querySelectorAll('.para-card').forEach((c,i)=>{c.style.transitionDelay=`${i*0.09}s`;});
+document.querySelectorAll('.sf-card').forEach((c,i)=>{c.style.transitionDelay=`${i*0.08}s`;});
 
 // ========================================================
-// PATRIOTIC MUSIC — Web Audio API
+// MUSIC (Web Audio API)
 // ========================================================
-const Music = (function(){
-  let ctx, master, reverb, playing = false, nextTime = 0, seqIdx = 0, loopId;
-
-  // Melody inspired by solemn patriotic tone (pentatonic-ish)
-  // Notes: frequency, duration (beats), amplitude
-  const notes = [
-    [392.00,0.5],[349.23,0.25],[329.63,0.25],[261.63,1.0],
-    [293.66,0.5],[329.63,0.5],[392.00,0.75],[440.00,0.25],
-    [392.00,0.5],[349.23,0.25],[329.63,0.25],[293.66,1.0],
-    [261.63,0.5],[293.66,0.5],[329.63,0.5],[261.63,0.75],[0,0.25],
-    [329.63,0.5],[392.00,0.5],[440.00,0.5],[523.25,0.75],[0,0.25],
-    [440.00,0.5],[392.00,0.25],[349.23,0.25],[329.63,1.0],
-    [293.66,0.5],[261.63,0.75],[0,0.5],
-  ];
-  const BPM = 58, beatDur = 60/BPM;
-
+const Music=(function(){
+  let ctx,master,reverb,playing=false,nextTime=0,seqIdx=0,loopId;
+  const notes=[[392.00,0.5],[349.23,0.25],[329.63,0.25],[261.63,1.0],[293.66,0.5],[329.63,0.5],[392.00,0.75],[440.00,0.25],[392.00,0.5],[349.23,0.25],[329.63,0.25],[293.66,1.0],[261.63,0.5],[293.66,0.5],[329.63,0.5],[261.63,0.75],[0,0.25],[329.63,0.5],[392.00,0.5],[440.00,0.5],[523.25,0.75],[0,0.25],[440.00,0.5],[392.00,0.25],[349.23,0.25],[329.63,1.0],[293.66,0.5],[261.63,0.75],[0,0.5]];
+  const BPM=58,beatDur=60/BPM;
   function init(){
-    ctx = new (window.AudioContext || window.webkitAudioContext)();
-    master = ctx.createGain(); master.gain.value = 0;
-    master.connect(ctx.destination);
-    // Simple convolver reverb
-    const buf = ctx.createBuffer(2, ctx.sampleRate*2.5, ctx.sampleRate);
-    for(let c=0;c<2;c++){
-      const d=buf.getChannelData(c);
-      for(let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*Math.exp(-i/(ctx.sampleRate*0.6));
-    }
-    reverb = ctx.createConvolver(); reverb.buffer = buf;
-    const wet = ctx.createGain(); wet.gain.value=0.3;
-    master.connect(reverb); reverb.connect(wet); wet.connect(ctx.destination);
+    ctx=new(window.AudioContext||window.webkitAudioContext)();
+    master=ctx.createGain();master.gain.value=0;master.connect(ctx.destination);
+    const buf=ctx.createBuffer(2,ctx.sampleRate*2.5,ctx.sampleRate);
+    for(let c=0;c<2;c++){const d=buf.getChannelData(c);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.exp(-i/(ctx.sampleRate*0.6));}
+    reverb=ctx.createConvolver();reverb.buffer=buf;
+    const wet=ctx.createGain();wet.gain.value=0.3;
+    master.connect(reverb);reverb.connect(wet);wet.connect(ctx.destination);
   }
-
-  function playNote(freq, start, dur){
-    if(!freq) return;
-    const o = ctx.createOscillator();
-    const g = ctx.createGain();
-    // Sitar-like: triangle + harmonic
-    const o2 = ctx.createOscillator();
-    const g2 = ctx.createGain();
-    o.type='triangle'; o.frequency.value=freq;
-    o2.type='sine'; o2.frequency.value=freq*2.01;
-    g2.gain.value=0.12;
-    const att=0.06, rel=dur*0.35;
-    g.gain.setValueAtTime(0,start);
-    g.gain.linearRampToValueAtTime(0.28,start+att);
-    g.gain.setValueAtTime(0.28,start+dur-rel);
-    g.gain.exponentialRampToValueAtTime(0.001,start+dur);
-    o.connect(g); g.connect(master);
-    o2.connect(g2); g2.connect(master);
-    o.start(start); o2.start(start);
-    o.stop(start+dur+0.05); o2.stop(start+dur+0.05);
-    // Subtle vibrato
-    const lfo=ctx.createOscillator(), lg=ctx.createGain();
-    lfo.frequency.value=5.5; lg.gain.value=freq*0.012;
-    lfo.connect(lg); lg.connect(o.frequency);
-    lfo.start(start); lfo.stop(start+dur+0.05);
+  function playNote(freq,start,dur){
+    if(!freq)return;
+    const o=ctx.createOscillator(),g=ctx.createGain();
+    const o2=ctx.createOscillator(),g2=ctx.createGain();
+    o.type='triangle';o.frequency.value=freq;o2.type='sine';o2.frequency.value=freq*2.01;g2.gain.value=0.12;
+    const att=0.06,rel=dur*0.35;
+    g.gain.setValueAtTime(0,start);g.gain.linearRampToValueAtTime(0.28,start+att);
+    g.gain.setValueAtTime(0.28,start+dur-rel);g.gain.exponentialRampToValueAtTime(0.001,start+dur);
+    o.connect(g);g.connect(master);o2.connect(g2);g2.connect(master);
+    o.start(start);o2.start(start);o.stop(start+dur+0.05);o2.stop(start+dur+0.05);
+    const lfo=ctx.createOscillator(),lg=ctx.createGain();
+    lfo.frequency.value=5.5;lg.gain.value=freq*0.012;
+    lfo.connect(lg);lg.connect(o.frequency);lfo.start(start);lfo.stop(start+dur+0.05);
   }
-
   function schedule(){
-    while(nextTime < ctx.currentTime + 0.5){
-      const [freq, beats] = notes[seqIdx % notes.length];
-      const dur = beats * beatDur;
-      playNote(freq, nextTime, dur);
-      nextTime += dur;
-      seqIdx++;
+    while(nextTime<ctx.currentTime+0.5){
+      const[freq,beats]=notes[seqIdx%notes.length];
+      const dur=beats*beatDur;playNote(freq,nextTime,dur);nextTime+=dur;seqIdx++;
     }
-    if(playing) loopId = setTimeout(schedule, 200);
+    if(playing)loopId=setTimeout(schedule,200);
   }
-
-  function start(){
-    if(!ctx) init();
-    if(ctx.state==='suspended') ctx.resume();
-    playing=true;
-    master.gain.linearRampToValueAtTime(0.5, ctx.currentTime+1);
-    nextTime = ctx.currentTime + 0.1;
-    schedule();
-  }
-
-  function stop(){
-    playing=false;
-    clearTimeout(loopId);
-    if(master) master.gain.linearRampToValueAtTime(0,ctx.currentTime+0.8);
-  }
-
-  return { start, stop, isPlaying:()=>playing };
+  function start(){if(!ctx)init();if(ctx.state==='suspended')ctx.resume();playing=true;master.gain.linearRampToValueAtTime(0.5,ctx.currentTime+1);nextTime=ctx.currentTime+0.1;schedule();}
+  function stop(){playing=false;clearTimeout(loopId);if(master)master.gain.linearRampToValueAtTime(0,ctx.currentTime+0.8);}
+  return{start,stop,isPlaying:()=>playing};
 })();
 
 const btn = document.getElementById('musicBtn');
-btn.addEventListener('click', ()=>{
-  if(Music.isPlaying()){
-    Music.stop();
-    btn.classList.remove('on');
-    btn.textContent = '♪';
-  } else {
-    Music.start();
+const bgAudio = document.getElementById('bgAudio');
+
+btn.addEventListener('click', () => {
+  if (bgAudio.paused) {
+    bgAudio.play();
+    bgAudio.volume = 0;
+    let vol = 0;
+    const fade = setInterval(() => {
+      vol = Math.min(vol + 0.02, 0.38);
+      bgAudio.volume = vol;
+      if (vol >= 0.38) clearInterval(fade);
+    }, 100);
     btn.classList.add('on');
-    btn.textContent = '♬';
+    btn.innerHTML = '&#9836;';
+  } else {
+    bgAudio.pause();
+    bgAudio.currentTime = 0;
+    btn.classList.remove('on');
+    btn.innerHTML = '&#9834;';
   }
 });
 
+/* =====================================================
+   HOW TO ADD YOUR OWN MP3:
+   
+   1. Upload your MP3 file to the same folder as index.html in your GitHub repo.
+      Example: add "vande_mataram.mp3" to your repo root.
 
-// ========================================================
-// HERO CARD VIS FIX (ensure cards visible even if below fold)
-// ========================================================
-// Give hero cards a re-check on visibility using a lower threshold
-const heroIo = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); });
-}, { threshold:0.05 });
-document.querySelectorAll('.hero-card').forEach(c => heroIo.observe(c));
+   2. Add this audio element just before the closing </body> tag:
+      <audio id="bgAudio" loop preload="none">
+        <source src="vande_mataram.mp3" type="audio/mpeg">
+      </audio>
 
+   3. Replace the Music button click handler above with:
+      const bgAudio = document.getElementById('bgAudio');
+      btn.addEventListener('click', () => {
+        if(bgAudio.paused){
+          bgAudio.play();
+          bgAudio.volume = 0;
+          let vol = 0;
+          const fade = setInterval(()=>{ vol=Math.min(vol+0.02,0.38); bgAudio.volume=vol; if(vol>=0.38)clearInterval(fade); },100);
+          btn.classList.add('on'); btn.innerHTML='&#9836;';
+        } else {
+          bgAudio.pause(); bgAudio.currentTime=0;
+          btn.classList.remove('on'); btn.innerHTML='&#9834;';
+        }
+      });
+   ===================================================== */
 </script>
+
+<audio id="bgAudio" loop preload="none">
+        <source src="national_song.mp3" type="audio/mpeg">
+</audio>
+
+
 </body>
 </html>
