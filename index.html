@@ -3,6 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ============================================================
+     VEER SHAHEED — A Digital Memorial
+     Copyright (c) 2026 Sumit Suman. All Rights Reserved.
+     Unauthorized reproduction, redistribution, or reuse of this
+     code, design, content, or structure — in whole or in part —
+     without explicit written permission from the author is
+     strictly prohibited.
+     ============================================================ -->
+
+  <meta name="author" content="Sumit Suman">
+  <meta name="copyright" content="Copyright 2026 Sumit Suman. All Rights Reserved.">
+  <meta name="creator" content="Sumit Suman">
+  <meta name="rights" content="All rights reserved. No part of this work may be reproduced without written permission from Sumit Suman.">
   <title>Veer Shaheed - Eternal Guardians of India</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -214,6 +227,9 @@
   .foot-branches{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.18em;color:var(--dim);margin-top:10px;text-transform:uppercase;line-height:1.9;}
   </style>
 </head>
+<div id="copyright-tag" aria-hidden="true" style="display:none;visibility:hidden;position:absolute;width:0;height:0;overflow:hidden;pointer-events:none;" data-author="Sumit Suman" data-year="2026" data-project="Veer Shaheed">
+  Copyright 2026 Sumit Suman. Veer Shaheed — A Digital Memorial for India's Martyrs. All Rights Reserved.
+</div>
 <body>
 <div id="loader"><svg id="loader-chakra" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg><div id="loader-text">JAI HIND - Vande Mataram</div></div>
 <canvas id="particles"></canvas>
@@ -393,6 +409,42 @@
 </footer>
 
 <script>
+
+
+// ============================================================
+// VEER SHAHEED — A Digital Memorial for India's Martyrs
+// Copyright (c) 2026 Sumit Suman. All Rights Reserved.
+// Unauthorized copying, redistribution, or reuse of this
+// source code or design is strictly prohibited without the
+// express written consent of the copyright owner.
+// ============================================================
+
+Object.defineProperty(document, '_copyright', {
+  value: {
+    author:  'Sumit Suman',
+    project: 'Veer Shaheed — A Digital Memorial',
+    year:    '2026',
+    rights:  'All Rights Reserved. Unauthorized reproduction strictly prohibited.',
+  },
+  writable:     false,
+  configurable: false,
+  enumerable:   true,
+});
+
+console.log(
+  '%c VEER SHAHEED ',
+  'background:#FF9933;color:#000;font-family:serif;font-size:14px;font-weight:bold;padding:6px 14px;',
+);
+console.log(
+  '%c Copyright \u00a9 2026 Sumit Suman. All Rights Reserved.',
+  'color:#FF9933;font-family:serif;font-size:12px;',
+);
+console.log(
+  '%c Unauthorized reproduction of this code or design is strictly prohibited.',
+  'color:#888;font-family:serif;font-size:11px;',
+);
+
+
 // ========================================================
 // HEROES DATA
 // ========================================================
@@ -404,8 +456,8 @@ const HEROES = [
   {rank:"Lieutenant, Indian Army",name:"Manoj Kumar Pandey",tags:[{t:"1/11 Gorkha Rifles",c:"s"},{t:"Kargil War",c:"g"}],op:"Operation Vijay, Batalik Sector",dates:"Born June 25, 1975, Martyred July 3, 1999",bp:"Sitapur, Uttar Pradesh",tribute:"Na Chhodnu - he would never leave. Leading his platoon through Khalubar heights, he cleared four enemy pickets single-handedly before falling in the final charge. His last words: Na chhodnu - I will not leave.",award:"Param Vir Chakra, Posthumous",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/e/e6/Manoj_Kumar_Pandey.jpg"},
   {rank:"Captain, Indian Army",name:"Anuj Nayyar",tags:[{t:"17 Jat Regiment",c:"s"},{t:"Kargil War",c:"g"}],op:"Operation Vijay, Tiger Hill",dates:"Born August 28, 1975, Martyred July 7, 1999",bp:"New Delhi",tribute:"Charged enemy bunkers on Tiger Hill under heavy machine-gun fire, ensuring his company succeeded in recapturing the strategic peak. He was 24 years old. When the peak fell to India, he was gone.",award:"Maha Vir Chakra, Posthumous",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/5/5e/Anuj_Nayyar.jpg"},
   {rank:"Company Havildar Major, Indian Army",name:"Abdul Hamid",tags:[{t:"4 Grenadiers",c:"s"},{t:"1965 Indo-Pak War",c:"g"}],op:"Battle of Asal Uttar, Khem Karan",dates:"Born July 1, 1933, Martyred September 10, 1965",bp:"Dhamupur, Uttar Pradesh",tribute:"Destroyed a column of Pakistan's invincible Patton tanks using a recoilless rifle from a jeep, exposing himself to devastating enemy fire. He martyred while taking out his seventh tank. A farmer's son who stopped an armoured column alone.",award:"Param Vir Chakra, Posthumous",yr:"1965",img:"https://upload.wikimedia.org/wikipedia/commons/a/a4/Abdul_Hamid_PVC.jpg"},
-  {rank:"Second Lieutenant, Indian Army",name:"Arun Khetarpal",tags:[{t:"17 Poona Horse",c:"s"},{t:"1971 Indo-Pak War",c:"g"}],op:"Battle of Basantar, Shakargarh",dates:"Born October 14, 1950, Martyred December 16, 1971",bp:"Pune, Maharashtra",tribute:"Refused evacuation with a burning tank, pressing forward to destroy a superior Pakistani armoured column. Pulton ko retreat nahin karoonga. Just 21 years old. The youngest officer to receive PVC. His tank was still firing when he fell.",award:"Param Vir Chakra, Posthumous",yr:"1971",img:"https://upload.wikimedia.org/wikipedia/commons/0/02/Arun_Khetarpal.jpg"},
-  {rank:"Subedar Major, Indian Army",name:"Yogendra Singh Yadav",tags:[{t:"18 Grenadiers",c:"s"},{t:"Kargil War",c:"g"}],op:"Operation Vijay, Tiger Hill Complex",dates:"Born May 10, 1980, Survived",bp:"Aurangabad, Uttar Pradesh",tribute:"Climbed a nearly vertical, ice-covered cliff face under enemy fire to capture Tiger Hill Top. Though hit by three bullets while scaling the cliff, he continued. Killed four enemy soldiers in hand-to-hand combat at the top. He lived. A miracle of will.",award:"Param Vir Chakra",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/7/7d/Yogendra_Singh_Yadav_PVC.jpg"},
+  {rank:"Second Lieutenant, Indian Army",name:"Arun Khetarpal",tags:[{t:"17 Poona Horse",c:"s"},{t:"1971 Indo-Pak War",c:"g"}],op:"Battle of Basantar, Shakargarh",dates:"Born October 14, 1950, Martyred December 16, 1971",bp:"Pune, Maharashtra",tribute:"Refused evacuation with a burning tank, pressing forward to destroy a superior Pakistani armoured column. Pulton ko retreat nahin karoonga. Just 21 years old. The youngest commissioned officer to receive PVC. His tank was still firing when he fell.",award:"Param Vir Chakra, Posthumous",yr:"1971",img:"https://upload.wikimedia.org/wikipedia/commons/0/02/Arun_Khetarpal.jpg"},
+  {rank:"Grenadier, Indian Army",name:"Yogendra Singh Yadav",tags:[{t:"18 Grenadiers",c:"s"},{t:"Kargil War",c:"g"}],op:"Operation Vijay, Tiger Hill Complex",dates:"Born May 10, 1980, Survived",bp:"Aurangabad, Uttar Pradesh",tribute:"Climbed a nearly vertical, ice-covered cliff face under enemy fire to capture Tiger Hill Top. Though hit by three bullets while scaling the cliff, he continued. Killed four enemy soldiers in hand-to-hand combat at the top. He lived. A miracle of will.",award:"Param Vir Chakra",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/7/7d/Yogendra_Singh_Yadav_PVC.jpg"},
   {rank:"Subedar, Indian Army",name:"Joginder Singh",tags:[{t:"1 Sikh Regiment",c:"s"},{t:"1962 Sino-Indian War",c:"g"}],op:"Battle of Tongpen La, NEFA",dates:"Born September 28, 1921, Martyred October 23, 1962",bp:"Moga, Punjab",tribute:"With a badly wounded arm, led counter-attack after counter-attack against Chinese forces vastly outnumbering his section. He ordered his men to leave and continued fighting alone until he was overwhelmed. The Sikh Regiment remembers him at every parade.",award:"Param Vir Chakra, Posthumous",yr:"1962",img:"https://upload.wikimedia.org/wikipedia/commons/8/83/Joginder_Singh_PVC.jpg"},
   {rank:"Major, Indian Army",name:"Dhan Singh Thapa",tags:[{t:"8 Gorkha Rifles",c:"s"},{t:"1962 Sino-Indian War",c:"g"}],op:"Battle of Sirijap, Ladakh",dates:"Born April 10, 1928, Survived captivity",bp:"Shimla, Himachal Pradesh",tribute:"Held his post at Sirijap against a 600-strong Chinese force with only a handful of men. Presumed dead, he was actually a prisoner of war. He survived brutal captivity and returned to India. Given PVC - only the second living PVC recipient.",award:"Param Vir Chakra",yr:"1962",img:"https://upload.wikimedia.org/wikipedia/commons/3/3f/Dhan_Singh_Thapa.jpg"},
   {rank:"Lance Naik, Indian Army",name:"Albert Ekka",tags:[{t:"14 Guards",c:"s"},{t:"1971 Indo-Pak War",c:"g"}],op:"Battle of Gangasagar, Bangladesh",dates:"Born December 27, 1942, Martyred December 3, 1971",bp:"Jharkhand (then Bihar)",tribute:"Despite being severely wounded, he led a charge against an enemy bunker and captured it alone, bayonetting the crew, before falling from his wounds. A tribesman from Jharkhand who gave his life for a people he had never met.",award:"Param Vir Chakra, Posthumous",yr:"1971",img:"https://upload.wikimedia.org/wikipedia/commons/5/5b/Albert_Ekka.jpg"},
@@ -415,17 +467,15 @@ const HEROES = [
   {rank:"2nd Lieutenant, Indian Army",name:"Rama Raghoba Rane",tags:[{t:"Corps of Engineers",c:"s"},{t:"1947 Kashmir War",c:"g"}],op:"Opening of Zoji La Pass under fire",dates:"Born June 26, 1918, Died July 11, 1994",bp:"Chendia, Goa",tribute:"Under constant enemy fire, operated a bulldozer to clear the Zoji La road for tanks and troops to advance. Worked for days without rest, exposed to fire throughout. His action directly led to the recapture of Kargil and Drass in 1947.",award:"Param Vir Chakra",yr:"1947",img:"https://upload.wikimedia.org/wikipedia/commons/8/83/Rama_Raghoba_Rane.jpg"},
   {rank:"Captain, Indian Army",name:"Somnath Sharma",tags:[{t:"4 Kumaon Regiment",c:"s"},{t:"1947 Kashmir War",c:"g"}],op:"Defence of Badgam, Srinagar Airport",dates:"Born January 31, 1923, Martyred November 3, 1947",bp:"Dadh, Himachal Pradesh",tribute:"With his right hand in a plaster cast, led his company against a vastly superior tribal force at Badgam to protect Srinagar airport. Martyred in action but his stand bought time for Indian forces to land. The first PVC recipient of independent India.",award:"Param Vir Chakra, Posthumous",yr:"1947",img:"https://upload.wikimedia.org/wikipedia/commons/c/cf/Somnath_Sharma.jpg"},
   {rank:"Captain, Indian Army",name:"Gurbachan Singh Salaria",tags:[{t:"3/1 Gorkha Rifles",c:"s"},{t:"UN Mission, Congo",c:"b"}],op:"Battle of Elizabethville, Congo",dates:"Born November 29, 1935, Martyred December 5, 1961",bp:"Jammu",tribute:"During UN peacekeeping operations in Congo, he charged a rebel roadblock with just a khukri and led a section attack that neutralised 40 rebels. He was mortally wounded but held his ground. The only Indian to receive PVC in a UN mission.",award:"Param Vir Chakra, Posthumous",yr:"1961",img:"https://upload.wikimedia.org/wikipedia/commons/3/37/Gurbachan_Singh_Salaria.jpg"},
-  {rank:"Havildar, Indian Army",name:"Major Piru Singh",tags:[{t:"6 Rajputana Rifles",c:"s"},{t:"1947 Kashmir War",c:"g"}],op:"Battle of Tithwal, Kashmir",dates:"Born May 20, 1918, Martyred July 18, 1948",bp:"Berojana, Rajasthan",tribute:"Captured an enemy post single-handedly at Tithwal by storming it through devastating fire, killing multiple enemy soldiers with grenades and bayonet. The last man standing in his section. He secured the position alone.",award:"Param Vir Chakra, Posthumous",yr:"1948",img:"https://upload.wikimedia.org/wikipedia/commons/6/6e/Piru_Singh.jpg"},
+  {rank:"Havildar, Indian Army",name:"Piru Singh",tags:[{t:"6 Rajputana Rifles",c:"s"},{t:"1947 Kashmir War",c:"g"}],op:"Battle of Tithwal, Kashmir",dates:"Born May 20, 1918, Martyred July 18, 1948",bp:"Berojana, Rajasthan",tribute:"Captured an enemy post single-handedly at Tithwal by storming it through devastating fire, killing multiple enemy soldiers with grenades and bayonet. The last man standing in his section. He secured the position alone.",award:"Param Vir Chakra, Posthumous",yr:"1948",img:"https://upload.wikimedia.org/wikipedia/commons/6/6e/Piru_Singh.jpg"},
   {rank:"Captain, Indian Army",name:"Naik Jadunath Singh",tags:[{t:"1 Rajput Regiment",c:"s"},{t:"1947 Kashmir War",c:"g"}],op:"Naushera Sector, Kashmir",dates:"Born November 21, 1916, Martyred February 6, 1948",bp:"Shahjhanpur, Uttar Pradesh",tribute:"Repelled three successive enemy attacks almost single-handedly, killing enemy soldiers with hand grenades and bayonet charges. Charged the final wave alone to stop the breakthrough. Found dead with the enemy halted before him.",award:"Param Vir Chakra, Posthumous",yr:"1948",img:"https://upload.wikimedia.org/wikipedia/commons/7/7d/Jadunath_Singh.jpg"},
   {rank:"Colonel, Indian Army",name:"Santosh Babu",tags:[{t:"16 Bihar Regiment",c:"s"},{t:"Galwan Valley 2020",c:"g"}],op:"Galwan Valley Clash, Ladakh",dates:"Born March 23, 1983, Martyred June 15, 2020",bp:"Suryapet, Telangana",tribute:"Led his battalion in fierce hand-to-hand combat against PLA troops in the Galwan River Valley. He was outnumbered but did not yield ground. He fell defending India's LAC claim. His men said he was the first into the fight and the last to fall.",award:"Maha Vir Chakra, Posthumous",yr:"2020",img:"https://upload.wikimedia.org/wikipedia/commons/f/fb/Santosh_Babu.jpg"},
   {rank:"Havildar, Indian Army",name:"K. Ngangom Meihoubam",tags:[{t:"16 Bihar Regiment",c:"s"},{t:"Galwan Valley 2020",c:"g"}],op:"Galwan Valley Clash, Ladakh",dates:"Martyred June 15, 2020",bp:"Manipur",tribute:"One of the 20 soldiers who fell in the Galwan Valley on the night of June 15, 2020. He fought with his bare hands against the enemy in the dark, at 14,000 ft, in sub-zero temperatures. His family in Manipur received the news at dawn.",award:"Vir Chakra, Posthumous",yr:"2020",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
   {rank:"Flight Lieutenant, Indian Air Force",name:"K. Nachiketa",tags:[{t:"27 Squadron IAF",c:"s"},{t:"Kargil War",c:"g"}],op:"Shot down over Pakistan, Kargil 1999",dates:"Born 1974, Survived captivity",bp:"Andhra Pradesh",tribute:"Shot down during Kargil operations and held as a prisoner of war in Pakistan. He behaved with dignity and composure that made the entire nation proud. Returned to India and continued to serve the Air Force. A symbol of Indian resolve.",award:"Vir Chakra",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Indian_Air_Force_Crest.svg/400px-Indian_Air_Force_Crest.svg.png"},
   {rank:"Captain, Indian Navy",name:"Mahendra Nath Mulla",tags:[{t:"INS Khukri",c:"b"},{t:"1971 Indo-Pak War",c:"g"}],op:"Sinking of INS Khukri, Arabian Sea",dates:"Born 1926, Martyred December 9, 1971",bp:"India",tribute:"When INS Khukri was torpedoed by Pakistani submarine PNS Hangor, Captain Mulla refused to leave the sinking ship until all his men had a chance to escape. He went down with his ship - the only Indian naval officer to do so in war.",award:"Maha Vir Chakra, Posthumous",yr:"1971",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Indian_Navy_crest.svg/400px-Indian_Navy_crest.svg.png"},
   {rank:"Major, Indian Army",name:"Padmapani Acharya",tags:[{t:"Rashtriya Rifles",c:"s"},{t:"Kashmir Operation",c:"g"}],op:"Counter-Insurgency, Sopore, Kashmir",dates:"Martyred February 25, 1999",bp:"Karnataka",tribute:"Led his team into a stronghold during an anti-insurgency operation at Sopore. Despite being severely outgunned, he charged forward to protect his men. He was martyred but the operation succeeded and civilian hostages were freed.",award:"Ashoka Chakra, Posthumous",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
-  {rank:"Captain, Indian Army",name:"N. Kenguruse",tags:[{t:"2 Rajput Regiment",c:"s"},{t:"Kargil War",c:"g"}],op:"Operation Vijay, Kargil",dates:"Martyred June 28, 1999",bp:"Nagaland",tribute:"Led his platoon up a near-vertical cliff face under enemy fire in the Kargil War. Destroyed two enemy bunkers single-handedly, before falling in the third assault. Even wounded, he led from the front. The Nagas sent their finest son.",award:"Param Vir Chakra Nominee, Maha Vir Chakra",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
   {rank:"Captain, Indian Army",name:"Vikram Thapar",tags:[{t:"HP Regiment",c:"s"},{t:"Kargil War",c:"g"}],op:"Point 5100, Kargil",dates:"Martyred June 30, 1999",bp:"Palampur, Himachal Pradesh",tribute:"He was Vikram Batra's fellow officer from Himachal Pradesh. Led his platoon to capture Point 5100, a key enemy position, on the same day Batra's last battle was fought. Fell leading from the front. Two young men from the same hills. Both gone. Both immortal.",award:"Vir Chakra, Posthumous",yr:"1999",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
-  {rank:"Sepoy, Indian Army",name:"Lalit Mangeshkar Rao Bhosle",tags:[{t:"1 Bihar",c:"s"},{t:"Kashmir Operations",c:"g"}],op:"Counter-Insurgency Operations",dates:"Martyred in service",bp:"Maharashtra",tribute:"One of thousands of infantrymen who serve in the freezing cold of Kashmir's mountains, without fame, without features in newspapers, without films being made about them. They die. India sleeps. Their families learn to live with silence.",award:"Sena Medal",yr:"2000s",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
-  {rank:"Wing Commander, Indian Air Force",name:"Abhinandan Varthaman",tags:[{t:"IAF MiG-21",c:"b"},{t:"Balakot Aftermath, 2019",c:"g"}],op:"Aerial engagement over LoC, February 27, 2019",dates:"Born April 21, 1983, Survived",bp:"Tamil Nadu",tribute:"Shot down a Pakistani F-16 with his outdated MiG-21 Bison in a dogfight over the LoC - a feat considered impossible. Shot down himself, he parachuted into PoK, was captured, and returned to India after 60 hours as a prisoner. His calm demeanour in captivity made all of India proud.",award:"Vir Chakra",yr:"2019",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Indian_Air_Force_Crest.svg/400px-Indian_Air_Force_Crest.svg.png"},
+  {rank:"Wing Commander, Indian Air Force",name:"Abhinandan Varthaman",tags:[{t:"IAF MiG-21",c:"b"},{t:"Balakot Aftermath, 2019",c:"g"}],op:"Aerial engagement over LoC, February 27, 2019",dates:"Born April 21, 1983, Survived",bp:"Tamil Nadu",tribute:"Shot down a Pakistani F-16 with his outdated MiG-21 Bison in a dogfight over the LoC - a feat considered impossible. His jet got shot, he parachuted into PoK, was captured, and returned to India after 60 hours as a prisoner. His calm demeanour in captivity made all of India proud.",award:"Vir Chakra",yr:"2019",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Indian_Air_Force_Crest.svg/400px-Indian_Air_Force_Crest.svg.png"},
   {rank:"Constable, CRPF",name:"Maninder Singh Attri",tags:[{t:"CRPF",c:"g"},{t:"Pulwama 2019",c:"s"}],op:"Pulwama Suicide Attack, February 14, 2019",dates:"Martyred February 14, 2019",bp:"Punjab",tribute:"One of 40 CRPF jawans killed in the Pulwama suicide bomb attack. He had been posted in Kashmir for months. He was returning from leave days earlier. His mother was waiting at home. She lit a diya at the temple every morning until her son came home. He came home draped in the Tricolour.",award:"Martyred in Service",yr:"2019",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
   {rank:"Major, Indian Army",name:"Mohit Sharma",tags:[{t:"1 Para SF",c:"s"},{t:"Kashmir Operation",c:"g"}],op:"Operation against LeT, Shopian, Kashmir",dates:"Born January 13, 1978, Martyred March 21, 2009",bp:"Rohtak, Haryana",tribute:"A Special Forces officer who disguised himself as a militant and infiltrated a Lashkar-e-Taiba group to gather intelligence. His cover was blown. Surrounded and outnumbered, he killed four terrorists before dying. His last words to HQ: Do not send backup. I am the backup.",award:"Ashoka Chakra, Posthumous",yr:"2009",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
   {rank:"Lieutenant Colonel, Indian Army",name:"Vishwanathan Ramasubramanian",tags:[{t:"9 Para SF",c:"s"},{t:"Northeast Operations",c:"g"}],op:"Counter-insurgency, Northeast India",dates:"Martyred in service",bp:"Tamil Nadu",tribute:"One of many Para SF officers who fought in the shadow wars of India's Northeast - the battles that rarely make headlines but secure every election, every village, every school. He went in and never came back. His name is on a plaque in his regiment.",award:"Vir Chakra, Posthumous",yr:"2000s",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Indian_Army_Logo.svg/400px-Indian_Army_Logo.svg.png"},
@@ -512,12 +562,12 @@ const SF_UNITS = [
     force:"Indian Army",
     name:"Para Special Forces",
     est:"1965",
-    warcry:"Yeh Paret Nahin Karti",
-    motto:"Strike to Lead",
+    warcry:"Balidan Param Dharma",
+    motto:"Men apart, every man an emperor",
     role:"India's primary special operations force. Conducts deep penetration raids, direct action, covert operations behind enemy lines, hostage rescue, COIN, and special reconnaissance. Paratroopers who earn the maroon beret with a 90-day brutal selection course. Less than 10% pass.",
     ops:"Operation Pawan - IPKF Sri Lanka, anti-terrorist operations Kashmir, Surgical Strikes 2016 ground component, Myanmar Cross-Border Strike 2015, counter-insurgency Northeast India. Among the most battle-experienced special forces on earth.",
     tribute:"When the Surgical Strikes of 2016 were ordered, it was Para SF teams who crossed the LoC on foot in the dark and dismantled terror launchpads. They came back. No one knew they had left.",
-    yr:"1965",
+    yr:"1966",
     color:"#FF9933"
   },
   {
@@ -968,32 +1018,7 @@ btn.addEventListener('click', () => {
   }
 });
 
-/* =====================================================
-   HOW TO ADD YOUR OWN MP3:
-   
-   1. Upload your MP3 file to the same folder as index.html in your GitHub repo.
-      Example: add "vande_mataram.mp3" to your repo root.
 
-   2. Add this audio element just before the closing </body> tag:
-      <audio id="bgAudio" loop preload="none">
-        <source src="vande_mataram.mp3" type="audio/mpeg">
-      </audio>
-
-   3. Replace the Music button click handler above with:
-      const bgAudio = document.getElementById('bgAudio');
-      btn.addEventListener('click', () => {
-        if(bgAudio.paused){
-          bgAudio.play();
-          bgAudio.volume = 0;
-          let vol = 0;
-          const fade = setInterval(()=>{ vol=Math.min(vol+0.02,0.38); bgAudio.volume=vol; if(vol>=0.38)clearInterval(fade); },100);
-          btn.classList.add('on'); btn.innerHTML='&#9836;';
-        } else {
-          bgAudio.pause(); bgAudio.currentTime=0;
-          btn.classList.remove('on'); btn.innerHTML='&#9834;';
-        }
-      });
-   ===================================================== */
 </script>
 
 <audio id="bgAudio" loop preload="none">
